@@ -1422,8 +1422,9 @@
 
         .score-range {
             display: flex;
-            align-items: center;
-            gap: 24px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
             padding: 20px 24px;
             background: rgba(255,255,255,0.1);
             border-radius: 12px;
@@ -1434,14 +1435,15 @@
             font-family: 'Bricolage Grotesque', sans-serif;
             font-size: 22px;
             font-weight: 800;
-            min-width: 100px;
             color: var(--bg-cream);
+            margin-bottom: 4px;
         }
 
         .score-range .range-status {
             font-size: 15px;
             color: var(--bg-cream);
             opacity: 0.85;
+            line-height: 1.5;
         }
 
         .score-note {
