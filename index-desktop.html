@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Value First | A Diagnostic on Structural Failures
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-desktop.css">
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <span>Strategic Ebook 2026</span>
+            </div>
+            <h1>Value First</h1>
+            <p class="hero-sub">A diagnostic on the five structural failures stalling digital products and the operating model that fixes them.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Structural Failures</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Framework Phases</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Min Read</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-diagram">
+                <div class="diagram-circle">
+                    <span class="diagram-label top">Strategy</span>
+                    <span class="diagram-label right">Execution</span>
+                    <span class="diagram-label bottom">Operations</span>
+                    <span class="diagram-label left">Structure</span>
+                    <div class="diagram-inner">
+                        <div class="diagram-core"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote>If your roadmap is full but your business is flat, you don't have a delivery problem. You have a structure problem.</blockquote>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2>The Real Bottleneck Isn't Where You're Looking</h2>
+            <p>Most leaders we meet are convinced their product is stuck because of the team, the stack, or the market. They reorganize squads, swap tools, hire seniors, run another offsite. Six months later, the dashboards look the same.</p>
+            <p>The honest diagnosis is uncomfortable: the product isn't moving because the operating structure around it cannot convert effort into outcomes. Talent is wasted on coordination. Tools accumulate without method. Strategy is announced but never operationalized. Every quarter, the organization ships more and learns less.</p>
+            <p>This ebook is a field guide. It names the five structural failures we see in almost every stalled digital product, quantifies what they cost, and lays out the delivery framework we use at Value First to repair them in practice, not in theory.</p>
+            <p>It is written for founders, CPOs, COOs and heads of engineering who suspect the problem is not the people in the room and want a vocabulary precise enough to act on that suspicion.</p>
+        </div>
+        <div class="intro-audience">
+            <h3>Who this is for</h3>
+            <ul>
+                <li>Founders and CPOs</li>
+                <li>COOs and Heads of Engineering</li>
+                <li>Operating Partners</li>
+                <li>Products $5M to $200M ARR</li>
+                <li>Those who've tried the obvious remedies</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="intro-howto">
+        <div class="howto-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+        </div>
+        <h3>How to navigate this guide</h3>
+        <p>Read it in one sitting (about 25 minutes). Start with the five structural failures to diagnose your situation. Then explore the Value First operating model. Apply what you learn with the self-assessment, and take action.</p>
+        <div class="toc-grid">
+            <a href="#failures" class="toc-item">
+                <span class="toc-number">01</span>
+                <span class="toc-label">The Five Structural Failures</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#cost" class="toc-item">
+                <span class="toc-number">02</span>
+                <span class="toc-label">What Structural Drift Costs</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#framework" class="toc-item">
+                <span class="toc-number">03</span>
+                <span class="toc-label">The Value First Delivery Framework</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#assessment" class="toc-item">
+                <span class="toc-number">04</span>
+                <span class="toc-label">Self-Assessment</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#case-study" class="toc-item">
+                <span class="toc-number">05</span>
+                <span class="toc-label">Case Study</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <section class="thesis-section">
+        <h2>Scaling is Easy.<br>Scaling Efficiently is Where Companies Fail.</h2>
+        <p class="lead">Almost any company can scale by adding people, budget, and tools. Few can scale while keeping unit economics, focus, and decision quality intact.</p>
+        <p class="thesis-text">Inefficient scale looks productive on the surface: more squads, more rituals, more dashboards. But underneath, the cost of producing each unit of value is rising. Cycle times grow, ownership blurs, and strategic bets dilute into a backlog of small features nobody can connect to a business outcome.</p>
+        <p class="thesis-text">The trap is that the symptoms look like execution problems, so leaders apply execution remedies: more sprints, more standups, more OKRs. The structure stays untouched, and the tax compounds.</p>
+        <div class="thesis-quote">"It is not a people problem. It is not a tech problem. It is a structure problem."</div>
+        <p class="thesis-text">Fix the structure, and the same people, with the same tools, start producing outcomes that previously felt impossible. That is the entire premise of the Value First operating model and the rest of this ebook is the evidence.</p>
+        <div class="thesis-is-grid">
+            <div class="thesis-is-card thesis-is-positive">
+                <h3>What this ebook is</h3>
+                <p>A structural diagnostic and an operating playbook. Direct, opinionated, built from engagements with product organizations between $5M and $200M ARR.</p>
+            </div>
+            <div class="thesis-is-card thesis-is-negative">
+                <h3>What it is not</h3>
+                <p>A motivational read. A framework for framework's sake. A pitch. There is no tooling to buy and no methodology to license at the end.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="failures-section" id="failures">
+        <div class="failures-header">
+            <h2>The Five Structural Failures</h2>
+            <p>Each failure compounds silently, disguised as an execution problem.</p>
+        </div>
+
+        <div class="failures-grid">
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
+                <div class="failure-number">01</div>
+                <h3>No Strategic Direction</h3>
+                <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
+                <ul>
+                    <li>Teams ship a high volume of features but cannot articulate which business outcome each one serves</li>
+                    <li>Prioritization won by loudest voice</li>
+                    <li>Roadmaps long; convictions short</li>
+                </ul>
+                <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="failure-number">02</div>
+                <h3>Disconnected Execution</h3>
+                <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
+                <ul>
+                    <li>Roadmaps don't reconcile</li>
+                    <li>Launches surprise the go-to-market team</li>
+                    <li>Engineering ships features marketing can't position and sales can't price</li>
+                    <li>Customers receive value in fragments, not as a coherent product story</li>
+                </ul>
+                <p class="quote-small">"If your launches surprise your own go-to-market team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
+                <div class="failure-number">03</div>
+                <h3>Reactive Operations</h3>
+                <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
+                <ul>
+                    <li>Leaders arbitrating tickets instead of deciding</li>
+                    <li>Strategic work constantly displaced</li>
+                    <li>Calendar becomes the strategy</li>
+                </ul>
+                <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+                <div class="failure-number">04</div>
+                <h3>Tools Without Method</h3>
+                <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
+                <ul>
+                    <li>Jira, Notion, Linear, HubSpot, Looker, Slack all present, none authoritative</li>
+                    <li>Data duplicated, statuses contradict</li>
+                    <li>Reporting rebuilt every quarter</li>
+                </ul>
+                <p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div class="failure-number">05</div>
+                <h3>Talent Without Structure</h3>
+                <p class="subtitle">Senior people, junior outcomes.</p>
+                <ul>
+                    <li>Ambiguous ownership and overlapping mandates</li>
+                    <li>Best people quietly disengage</li>
+                    <li>Structural debt years deep before the trend surfaces</li>
+                </ul>
+                <p class="quote-small">"Senior talent doesn't leave for more money. It leaves for more authority, usually to a competitor with worse pay and a better structure."</p>
+            </div>
+        </div>
+
+        <div class="accordion-mobile" id="failures-accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>01 — No Strategic Direction</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Teams ship a high volume of features but cannot articulate which business outcome each one serves</li>
+                            <li>Prioritization won by loudest voice</li>
+                            <li>Roadmaps long; convictions short</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It survives because everyone is busy. Activity is mistaken for progress, and nobody wants to be the executive who pauses delivery to question direction.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Strategy was authored as a narrative, not translated into measurable bets, guardrails, and explicit trade-offs. Without a decision framework, every request looks equally valid and the loudest stakeholder wins by default.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Convert strategy into a small set of strategic bets with owners, leading indicators, and explicit non-goals. Make 'no' a structural answer, not a political one. Publish what you will not do this quarter.</p>
+                    </div>
+                    <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>02 — Disconnected Execution</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Roadmaps don't reconcile</li>
+                            <li>Launches surprise the go-to-market team</li>
+                            <li>Engineering ships features marketing can't position and sales can't price</li>
+                            <li>Customers receive value in fragments, not as a coherent product story</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It persists because each function is individually high-performing. Local excellence masks a global failure to converge and leadership rewards the outputs they can see in their own dashboards.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>There is no shared delivery cadence across functions. Each area runs its own rituals on its own clock, with its own definition of done, and 'alignment' is delegated to whoever attends the most meetings.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Install a single delivery cadence with cross-functional checkpoints tied to the same outcomes. One backlog of bets, one definition of done, one review. If a function isn't in the cadence, it's not in the bet.</p>
+                    </div>
+                    <p class="quote-small">"If your launches surprise your own go-to-market team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>03 — Reactive Operations</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Leaders arbitrating tickets instead of deciding</li>
+                            <li>Strategic work constantly displaced</li>
+                            <li>Calendar becomes the strategy</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It feels productive. Responsiveness is praised. The cost, strategic work displaced indefinitely, is invisible until a competitor launches the bet you postponed for two quarters.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Operations were never designed. They emerged. There is no explicit model for how decisions, exceptions, and escalations should flow, so every request defaults to the most senior person in the chain.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Design the operating system: decision rights, SLAs for internal requests, intake funnels, and a visible queue. Replace heroics with a system. Protect at least 60% of leadership time for strategic work, in writing.</p>
+                    </div>
+                    <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>04 — Tools Without Method</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Jira, Notion, Linear, HubSpot, Looker, Slack all present, none authoritative</li>
+                            <li>Data duplicated, statuses contradict</li>
+                            <li>Reporting rebuilt every quarter</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>Tools are easy to buy and politically cheap to adopt. Method is hard to agree on and expensive to enforce. So organizations keep buying tools, hoping configuration will substitute for decision-making.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Tools were adopted to solve symptoms, not to instrument a method. Without a shared operating method, every tool becomes a tribal dialect and every team builds its own private workflow on top of the official one.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Define the method first, how you plan, decide, ship and learn, then configure tools to enforce it. One source of truth per question. Retire any tool that competes with the system of record.</p>
+                    </div>
+                    <p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>05 — Talent Without Structure</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Senior people, junior outcomes.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Ambiguous ownership and overlapping mandates</li>
+                            <li>Best people quietly disengage</li>
+                            <li>Structural debt years deep before the trend surfaces</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It is the most expensive failure and the slowest to surface. Senior talent rarely complains structurally, they adapt, then exit. By the time HR sees the trend, the structural debt is years deep.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>The org chart describes reporting lines, not accountability. Roles are titles, not contracts. Performance is judged on activity, not outcomes, so senior operators are rewarded for the same behaviors that frustrate them.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Define accountability per outcome, not per function. Pair senior talent with structural authority, budget, headcount, and the right to say no. If you wouldn't trust them to decide, don't hire them at that level.</p>
+                    </div>
+                    <p class="quote-small">"Senior talent doesn't leave for more money. It leaves for more authority, usually to a competitor with worse pay and a better structure."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cost-section" id="cost">
+        <div class="cost-header">
+            <h2>What Structural Drift Actually Costs You</h2>
+            <p>Structural failures are rarely catastrophic. They are expensive precisely because they look survivable.</p>
+        </div>
+        <p class="cost-context">Compounded over 18 months, structural drift typically costs more than the entire transformation program required to fix it.</p>
+        <div class="cost-grid">
+            <div class="cost-item">
+                <div class="cost-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div class="cost-percent">30%</div>
+                <div class="cost-details">
+                    <h4>Coordination Tax</h4>
+                    <p>Meetings, status, realignment</p>
+                </div>
+                <div class="cost-impact">20-35% of senior time</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <polyline points="1 4 1 10 7 10"/>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                    </svg>
+                </div>
+                <div class="cost-percent">22%</div>
+                <div class="cost-details">
+                    <h4>Rework</h4>
+                    <p>Features rebuilt, scopes reopened</p>
+                </div>
+                <div class="cost-impact">15-25% of eng. capacity</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="cost-percent">18%</div>
+                <div class="cost-details">
+                    <h4>Decision Latency</h4>
+                    <p>Bets postponed, windows missed</p>
+                </div>
+                <div class="cost-impact">1-2 quarters of runway</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <div class="cost-percent">16%</div>
+                <div class="cost-details">
+                    <h4>Talent Attrition</h4>
+                    <p>Senior departures, silent quitting</p>
+                </div>
+                <div class="cost-impact">1.5-2x salary per loss</div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                </div>
+                <div class="cost-percent">14%</div>
+                <div class="cost-details">
+                    <h4>Strategic Dilution</h4>
+                    <p>Roadmap drifts toward requests</p>
+                </div>
+                <div class="cost-impact">Lost category position</div>
+            </div>
+        </div>
+        <div class="cost-quote">"The most expensive line item on your P&L is the one no accountant will ever book."</div>
+    </section>
+
+    <section class="framework-section" id="framework">
+        <div class="framework-header">
+            <h2>The Value First Delivery Framework</h2>
+            <p>The Value First Delivery Framework is a five-phase operating model designed to move a product organization from reactive execution to structural efficiency. Each phase is a structural intervention, not a workshop.</p>
+        </div>
+
+        <div class="framework-grid">
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <h3>01 Diagnose</h3>
+                <p class="purpose">Map structural failures and value leaks</p>
+                <p class="output">Structural diagnostic</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <line x1="19" y1="8" x2="19" y2="14"/>
+                        <line x1="22" y1="11" x2="16" y2="11"/>
+                    </svg>
+                </div>
+                <h3>02 Align</h3>
+                <p class="purpose">Translate strategy into operating bets</p>
+                <p class="output">Bet portfolio & guardrails</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                </div>
+                <h3>03 Design</h3>
+                <p class="purpose">Define decision rights: who decides, who is consulted, who is informed</p>
+                <p class="output">Operating model v1</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                </div>
+                <h3>04 Operate</h3>
+                <p class="purpose">Run the system; instrument the loops</p>
+                <p class="output">Live delivery cadence</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                        <line x1="12" y1="20" x2="12" y2="10"/>
+                        <line x1="18" y1="20" x2="18" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="16"/>
+                    </svg>
+                </div>
+                <h3>05 Scale</h3>
+                <p class="purpose">Compound learning; reduce unit cost</p>
+                <p class="output">Repeatable scale engine</p>
+            </div>
+        </div>
+
+        <p class="framework-note">The phases are sequential by design. You cannot align a strategy you have not diagnosed, you cannot design a system around a strategy you have not aligned, and you cannot scale a system you have not yet operated under real conditions. Skipping phases is the most common failure mode.</p>
+        <p class="framework-quote">"The deliverable of every phase is a change in how the organization decides, ships, and learns, not a document, not a workshop, not a deck."</p>
+    </section>
+
+    <section class="engagement-section">
+        <h3>Typical Engagement</h3>
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <div class="engagement-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                </div>
+                <h4>Engagement Length</h4>
+                <div class="engagement-items">
+                    <div class="engagement-item">
+                        <span class="phase-badge diagnose">01</span>
+                        <span class="phase-name">Diagnose</span>
+                        <span class="phase-duration">3–4 weeks</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="phase-badge align">02</span>
+                        <span class="phase-name">Align</span>
+                        <span class="phase-duration">2–3 weeks</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="phase-badge design">03</span>
+                        <span class="phase-name">Design</span>
+                        <span class="phase-duration">4–6 weeks</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="phase-badge operate">04</span>
+                        <span class="phase-name">Operate</span>
+                        <span class="phase-duration">8–12 weeks</span>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="phase-badge scale">05</span>
+                        <span class="phase-name">Scale</span>
+                        <span class="phase-duration">continuous</span>
+                    </div>
+                </div>
+            </div>
+            <div class="engagement-card">
+                <div class="engagement-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h4>Leadership Time Required</h4>
+                <div class="leadership-content">
+                    <div class="leadership-phase">
+                        <div class="leadership-label">Phases 1–3</div>
+                        <div class="leadership-value">4–6 hrs/week</div>
+                        <div class="leadership-desc">from executive team</div>
+                    </div>
+                    <div class="leadership-divider"></div>
+                    <div class="leadership-phase">
+                        <div class="leadership-label">Phase 4 onwards</div>
+                        <div class="leadership-value highlight">1–2 hrs/week</div>
+                        <div class="leadership-desc">once system is operating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="phase-details">
+        <h3>Delivery Framework: Phase Details</h3>
+
+        <div class="accordion-mobile" id="phase-details-accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>01 — Diagnose</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Before you fix anything, map where value actually leaks.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Interview operators across product, eng, GTM and finance, separately.</li>
+                            <li>Trace 3 to 5 recent decisions end-to-end: who decided, on what evidence, in how long.</li>
+                            <li>Quantify cycle time, rework rate, and decision latency.</li>
+                            <li>Identify the top three structural failures by business impact, not noise.</li>
+                            <li>Document evidence verbatim, patterns matter more than opinions.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A 10 to 15 page structural diagnostic with named failures, evidence, and a ranked intervention plan. No opinions, only observed patterns.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Treating the diagnostic as a survey instead of an investigation. If everyone agrees on the findings in week one, you haven't looked hard enough.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>Senior operators say "yes, that's exactly what's happening, and we've never named it before." The vocabulary itself becomes a tool.</p>
+                    </div>
+                    <p class="quote-small">"You cannot fix what you have not named. The diagnostic is not a deliverable, it is the first structural intervention."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>02 — Align</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Translate strategy from narrative into operating constraints.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Reduce the strategy to 3 to 5 strategic bets with explicit non-goals.</li>
+                            <li>Assign one accountable owner per bet, with budget and decision rights.</li>
+                            <li>Define leading indicators per bet, not vanity metrics.</li>
+                            <li>Publish guardrails: what you will and will not do this cycle.</li>
+                            <li>Kill or park anything that does not serve a named bet.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A bet portfolio that fits on a single page, signed by the executive team, and capable of resolving 80% of prioritization debates without a meeting.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Treating "alignment" as a communication exercise. Real alignment is measured in things you stop doing, not in slides everyone nods at.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>When a stakeholder request is declined and nobody escalates, because the guardrails make the answer obvious to everyone in the room.</p>
+                    </div>
+                    <p class="quote-small">"Alignment is what survives the absence of the executive who announced it. Anything else is a memo."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>03 — Design the System</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Engineer the operating model the way you would engineer a product.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Map decision rights: who decides, who is consulted, who is informed.</li>
+                            <li>Define the delivery cadence: planning, review, retrospective rhythm.</li>
+                            <li>Design intake funnels for requests, exceptions, and escalations.</li>
+                            <li>Configure tools to enforce the method, not to replace it.</li>
+                            <li>Write it down. If it isn't documented, it isn't a system.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>Operating Model v1: a documented system that any new hire can read on day one and operate by week two.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Designing the perfect system instead of a working one. v1 should be deliberately under-engineered, it will be revised by reality within weeks.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>Operators stop asking "who decides this?" and start asking "what does the data say?" Coordination overhead falls measurably.</p>
+                    </div>
+                    <p class="quote-small">"A documented operating model is the cheapest insurance a leadership team will ever buy, and the one most often skipped."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>04 — Operate</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Run the system. Instrument it. Resist the urge to redesign weekly.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Hold the cadence for at least one full delivery cycle without changes.</li>
+                            <li>Instrument the loops: cycle time, decision latency, rework, throughput.</li>
+                            <li>Surface friction in retrospectives, fix structure, not symptoms.</li>
+                            <li>Protect leadership time for strategic work, not arbitration.</li>
+                            <li>Let the system absorb the first crisis. That is the test.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A live delivery cadence producing predictable output, with a weekly operating review that takes 45 minutes, not three hours.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Patching the system on the first sign of friction. Friction is data, it tells you which structural assumption was wrong. Investigate before you fix.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>The team starts shipping ahead of the cadence and asks for harder bets, rather than asking for more capacity to handle the same backlog.</p>
+                    </div>
+                    <p class="quote-small">"The first cycle under a new system will feel slower. It isn't. You are now seeing the work that was previously hidden as coordination."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>05 — Scale Efficiently</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Compound the system. Reduce the cost per unit of value shipped.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Codify what works into playbooks new teams can adopt without rewriting.</li>
+                            <li>Decentralize decisions that no longer need executive arbitration.</li>
+                            <li>Reinvest saved capacity into the next strategic bet, not into more rituals.</li>
+                            <li>Re-diagnose every two quarters, structure decays without maintenance.</li>
+                            <li>Train the next layer of leadership to run the model, not to depend on it.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A repeatable scale engine: the organization can absorb new teams, markets, or product lines without rebuilding the operating model from scratch.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Confusing scale with replication. The model must be adapted to local context, only the principles travel unchanged, not the rituals.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>A new business unit reaches operating maturity in one quarter instead of four, using the same playbook with localized parameters.</p>
+                    </div>
+                    <p class="quote-small">"Scale is not a destination. It is the moment the operating model stops depending on the people who designed it."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>06 — How It All Works</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">The short version for anyone in the company.</p>
+<div class="phase-detail-section">
+                        <h5>The analogy</h5>
+                        <p>Think of it like building a house. You wouldn't build a second floor on a cracked foundation.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>The five phases</h5>
+                        <ul>
+                            <li><strong>01 Diagnose</strong> — Find the cracks</li>
+                            <li><strong>02 Align</strong> — Decide what matters</li>
+                            <li><strong>03 Design</strong> — Draw the blueprints</li>
+                            <li><strong>04 Operate</strong> — Build and fix</li>
+                            <li><strong>05 Scale</strong> — Replicate</li>
+                        </ul>
+                    </div>
+                    <p class="quote-small">"Most companies skip phases and wonder why the structure stays broken."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-details-grid">
+            <div class="phase-detail-card">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-number">01</div>
+                    <div class="phase-detail-title">
+                        <h4>Diagnose</h4>
+                        <p>Before you fix anything, map where value actually leaks.</p>
+                    </div>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>What this phase does</h5>
+                    <ul>
+                        <li>Interview operators across product, eng, GTM and finance, separately.</li>
+                        <li>Trace 3 to 5 recent decisions end-to-end: who decided, on what evidence, in how long.</li>
+                        <li>Quantify cycle time, rework rate, and decision latency.</li>
+                        <li>Identify the top three structural failures by business impact, not noise.</li>
+                        <li>Document evidence verbatim, patterns matter more than opinions.</li>
+                    </ul>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Outcome</h5>
+                    <p>A 10 to 15 page structural diagnostic with named failures, evidence, and a ranked intervention plan. No opinions, only observed patterns.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Common pitfall</h5>
+                    <p>Treating the diagnostic as a survey instead of an investigation. If everyone agrees on the findings in week one, you haven't looked hard enough.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Signal of success</h5>
+                    <p>Senior operators say "yes, that's exactly what's happening, and we've never named it before." The vocabulary itself becomes a tool.</p>
+                </div>
+                <div class="phase-quote">"You cannot fix what you have not named. The diagnostic is not a deliverable, it is the first structural intervention."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">02</div>
+                <div class="phase-detail-title">
+                    <h4>Align</h4>
+                    <p>Translate strategy from narrative into operating constraints.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Reduce the strategy to 3 to 5 strategic bets with explicit non-goals.</li>
+                    <li>Assign one accountable owner per bet, with budget and decision rights.</li>
+                    <li>Define leading indicators per bet, not vanity metrics.</li>
+                    <li>Publish guardrails: what you will and will not do this cycle.</li>
+                    <li>Kill or park anything that does not serve a named bet.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A bet portfolio that fits on a single page, signed by the executive team, and capable of resolving 80% of prioritization debates without a meeting.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Treating "alignment" as a communication exercise. Real alignment is measured in things you stop doing, not in slides everyone nods at.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>When a stakeholder request is declined and nobody escalates, because the guardrails make the answer obvious to everyone in the room.</p>
+            </div>
+            <div class="phase-quote">"Alignment is what survives the absence of the executive who announced it. Anything else is a memo."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">03</div>
+                <div class="phase-detail-title">
+                    <h4>Design the System</h4>
+                    <p>Engineer the operating model the way you would engineer a product.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Map decision rights: who decides, who is consulted, who is informed.</li>
+                    <li>Define the delivery cadence: planning, review, retrospective rhythm.</li>
+                    <li>Design intake funnels for requests, exceptions, and escalations.</li>
+                    <li>Configure tools to enforce the method, not to replace it.</li>
+                    <li>Write it down. If it isn't documented, it isn't a system.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>Operating Model v1: a documented system that any new hire can read on day one and operate by week two.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Designing the perfect system instead of a working one. v1 should be deliberately under-engineered, it will be revised by reality within weeks.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>Operators stop asking "who decides this?" and start asking "what does the data say?" Coordination overhead falls measurably.</p>
+            </div>
+            <div class="phase-quote">"A documented operating model is the cheapest insurance a leadership team will ever buy, and the one most often skipped."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">04</div>
+                <div class="phase-detail-title">
+                    <h4>Operate</h4>
+                    <p>Run the system. Instrument it. Resist the urge to redesign weekly.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Hold the cadence for at least one full delivery cycle without changes.</li>
+                    <li>Instrument the loops: cycle time, decision latency, rework, throughput.</li>
+                    <li>Surface friction in retrospectives, fix structure, not symptoms.</li>
+                    <li>Protect leadership time for strategic work, not arbitration.</li>
+                    <li>Let the system absorb the first crisis. That is the test.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A live delivery cadence producing predictable output, with a weekly operating review that takes 45 minutes, not three hours.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Patching the system on the first sign of friction. Friction is data, it tells you which structural assumption was wrong. Investigate before you fix.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>The team starts shipping ahead of the cadence and asks for harder bets, rather than asking for more capacity to handle the same backlog.</p>
+            </div>
+            <div class="phase-quote">"The first cycle under a new system will feel slower. It isn't. You are now seeing the work that was previously hidden as coordination."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">05</div>
+                <div class="phase-detail-title">
+                    <h4>Scale Efficiently</h4>
+                    <p>Compound the system. Reduce the cost per unit of value shipped.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Codify what works into playbooks new teams can adopt without rewriting.</li>
+                    <li>Decentralize decisions that no longer need executive arbitration.</li>
+                    <li>Reinvest saved capacity into the next strategic bet, not into more rituals.</li>
+                    <li>Re-diagnose every two quarters, structure decays without maintenance.</li>
+                    <li>Train the next layer of leadership to run the model, not to depend on it.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A repeatable scale engine: the organization can absorb new teams, markets, or product lines without rebuilding the operating model from scratch.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Confusing scale with replication. The model must be adapted to local context, only the principles travel unchanged, not the rituals.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>A new business unit reaches operating maturity in one quarter instead of four, using the same playbook with localized parameters.</p>
+            </div>
+            <div class="phase-quote">"Scale is not a destination. It is the moment the operating model stops depending on the people who designed it."</div>
+            </div>
+
+            <div class="phase-detail-card phase-summary-card">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-number">06</div>
+                    <div class="phase-detail-title">
+                        <h4>How It All Works</h4>
+                        <p>The simple version for anyone in the company.</p>
+                    </div>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>The analogy</h5>
+                    <p>Think of it like building a house. You wouldn't build a second floor on a cracked foundation.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>The five phases</h5>
+                    <ul class="summary-list">
+                        <li><strong>01 Diagnose</strong> — Find the cracks</li>
+                        <li><strong>02 Align</strong> — Decide what matters</li>
+                        <li><strong>03 Design</strong> — Draw the blueprints</li>
+                        <li><strong>04 Operate</strong> — Build and fix</li>
+                        <li><strong>05 Scale</strong> — Replicate</li>
+                    </ul>
+                </div>
+                <div class="phase-summary-quote">"Most companies skip phases and wonder why the structure stays broken."</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-section" id="case-study">
+        <div class="case-header">
+            <div class="case-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" >
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                </svg>
+            </div>
+            <div class="case-header-text">
+                <h2>Before vs. After: A B2B SaaS Company at $18M ARR</h2>
+                <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
+            </div>
+        </div>
+        <div class="case-card">
+            <div class="case-title">
+                <h3>B2B SaaS at $18M ARR</h3>
+                <p>Same people. Same stack. Same market. The only variable changed was the operating structure.</p>
+            </div>
+            <div class="case-metrics">
+                <div class="metric">
+                    <div class="metric-label">Strategic Bets</div>
+                    <div class="metric-values">
+                        <span class="metric-old">27</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Cycle Time</div>
+                    <div class="metric-values">
+                        <span class="metric-old">11w</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4w</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Rework Rate</div>
+                    <div class="metric-values">
+                        <span class="metric-old">31%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">9%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Net Revenue Ret.</div>
+                    <div class="metric-values">
+                        <span class="metric-old">98%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">118%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Leadership in Arbitration</div>
+                    <div class="metric-values">
+                        <span class="metric-old">60%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">15%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Attrition</div>
+                    <div class="metric-values">
+                        <span class="metric-old">22%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">6%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-footer">
+                <blockquote>"We didn't hire our way out of it. We designed our way out of it."<cite>— VP of Product</cite></blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section class="self-assessment-final" id="assessment">
+        <h2>Self-Assessment</h2>
+        <p>Score each statement 0 (never true) to 3 (consistently true). Total below 18 indicates structural drift; below 12, intervention is overdue.</p>
+
+        <div class="question-list">
+            <div class="question-item">
+                <div class="question-number">1</div>
+                <div class="question-text">Every active initiative maps to one named strategic bet with an owner.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">2</div>
+                <div class="question-text">Leadership can list this quarter's explicit non-goals from memory.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">3</div>
+                <div class="question-text">Prioritization debates are resolved by framework, not by seniority.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">4</div>
+                <div class="question-text">Product, engineering and GTM share one delivery cadence and definition of done.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">5</div>
+                <div class="question-text">Decision rights for recurring questions are documented and respected.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">6</div>
+                <div class="question-text">Cycle time, rework rate and decision latency are measured monthly.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">7</div>
+                <div class="question-text">Internal requests flow through a visible intake, not direct messages.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">8</div>
+                <div class="question-text">Tools enforce a documented method; no critical data lives in two places.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">9</div>
+                <div class="question-text">Senior talent has structural authority: budget, headcount, the right to say no.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">10</div>
+                <div class="question-text">Leadership spends most of its week on bets, not on arbitration.</div>
+            </div>
+        </div>
+
+        <div class="score-card">
+            <h3>How to Read Your Score</h3>
+            <div class="score-ranges">
+                <div class="score-range">
+                    <div class="range-score">30 to 25</div>
+                    <div class="range-status">Structurally healthy. Maintain cadence and re-diagnose every two quarters to prevent drift.</div>
+                </div>
+                <div class="score-range">
+                    <div class="range-score">24 to 18</div>
+                    <div class="range-status">Drift forming. Two or more failures are taking root. Diagnose now.</div>
+                </div>
+                <div class="score-range">
+                    <div class="range-score">17 to 0</div>
+                    <div class="range-status">Structural failure. Intervention required. The cost of waiting another quarter exceeds the cost of acting.</div>
+                </div>
+            </div>
+            <div class="score-note">
+                <p>The score is a temperature reading, not a verdict. What matters is the pattern: which questions you scored 0 or 1 on. Three or more low scores in the same category, strategy, execution, operations, tooling, or talent, point to a single structural failure compounding underneath the surface.</p>
+                <p>Bring the completed assessment to your next leadership offsite. The goal is not to defend the score, it is to name the failure honestly enough that the team can act on it before the next quarter compounds the cost.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>If This Resonates, We Should Have a Conversation Worth Having.</h2>
+        <div class="cta-grid">
+            <div class="cta-text-card">
+                <p>If you read this ebook and recognized your own organization in more than two of the structural failures, the next quarter will not fix itself. Structures don't self-correct. They compound.</p>
+                <p>Value First works with leadership teams who are ready to stop blaming people and tools, and start redesigning the operating system around their product. We do not deliver decks. We deliver structural change you can measure in cycle time, decision latency, and unit economics.</p>
+            </div>
+            <blockquote class="cta-quote">"Scaling a digital product is easy. Scaling it efficiently is where most companies fail. It's not a people or tech problem. It's a structure problem."</blockquote>
+        </div>
+        <div class="cta-next-step-card">
+            <div class="cta-next-step-header">
+                <h3>Next Step</h3>
+            </div>
+            <div class="cta-next-step-body">
+                <p class="cta-next-step-title">45-minute structured diagnostic call</p>
+                <p class="cta-next-step-desc">No deck. No pitch. We walk through your operating structure and name the failures we see, or tell you there aren't any.</p>
+                <div class="cta-contact-details">
+                    <p class="cta-contact">Engagements typically begin with a single diagnostic conversation. No preparation required.</p>
+                    <p class="cta-contact">Bring the questions you cannot resolve internally, and we will tell you whether they are execution problems or structural ones.</p>
+                </div>
+                <p class="cta-website">valuefirstconsulting.com</p>
+                <a href="https://valuefirstconsulting.com" class="cta-button" target="_blank">Book a Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Value First 2026</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

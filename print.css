@@ -1,0 +1,27 @@
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+* {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+h1, h2, h3, h4 {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.failures-grid,
+.cost-grid,
+.framework-grid {
+  display: grid !important;
+  break-inside: avoid;
+}
+
+.failure-card,
+.cost-item,
+.phase-card {
+  break-inside: avoid;
+}
