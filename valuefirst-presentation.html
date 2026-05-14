@@ -37,6 +37,8 @@
             color: var(--text-medium);
             line-height: 1.6;
             background: var(--bg-cream);
+            max-width: 100vw;
+            overflow-x: hidden;
         }
 
         .hero {
@@ -397,6 +399,8 @@
             line-height: 1.05;
             margin-bottom: 20px;
             max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .failures-header p {
@@ -476,6 +480,12 @@
         .cost-section {
             background: var(--surface-light);
             padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            text-align: center;
+        }
+
+        .cost-header {
+            max-width: 800px;
+            margin: 0 auto 48px;
         }
 
         .cost-header h2 {
@@ -498,6 +508,8 @@
             margin-bottom: 48px;
             line-height: 1.6;
             max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cost-quote {
@@ -520,6 +532,7 @@
             gap: 16px;
             overflow-x: auto;
             padding-bottom: 16px;
+            justify-content: center;
         }
 
         .cost-item {
@@ -727,7 +740,7 @@
             .summary-list li:last-child {
                 border-bottom: none;
             }
-            .phase-summary-quote {
+.phase-summary-quote {
                 font-style: italic;
                 font-size: 14px;
                 color: var(--text-dark);
@@ -738,26 +751,37 @@
                 margin-top: 8px;
             }
         }
+
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .failures-grid,
+            .phase-details-grid {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 16px;
+            }
+
+            .accordion-mobile {
+                display: none;
+            }
+
+            .phase-details {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                align-items: start;
+            }
             .phase-details > h3 {
                 grid-column: 1 / -1;
             }
+            .phase-details-grid {
+                display: contents;
+            }
             .phase-detail-card {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 16px;
-                margin-bottom: 0;
+                min-width: auto;
             }
-            .phase-detail-header {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-                margin-bottom: 8px;
-            }
-            .phase-detail-number {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+            .phase-detail-card:nth-child(5),
+            .phase-detail-card:nth-child(6) {
+                grid-column: 1 / -1;
             }
         }
 
@@ -1617,7 +1641,34 @@
             }
         }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
+            section > *:first-child {
+                max-width: 100%;
+            }
+            .failures-header h2,
+            .failures-header p,
+            .framework-note,
+            .framework-quote,
+            .cost-header,
+            .cost-context,
+            .cost-grid,
+            .case-header,
+            .case-context,
+            .case-metrics,
+            .engagement-grid,
+            .phase-details > h3,
+            .cta-section p,
+            .cta-quote,
+            .cta-next-step,
+            .score-header,
+            .score-context,
+            .score-scale {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
             .failures-grid,
             .phase-details-grid {
                 display: none;
