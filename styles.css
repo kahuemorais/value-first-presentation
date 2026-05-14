@@ -1418,6 +1418,7 @@
         .score-ranges {
             display: grid;
             gap: 16px;
+            text-align: left;
         }
 
         .score-range {
