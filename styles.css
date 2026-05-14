@@ -23,6 +23,10 @@
             scroll-behavior: smooth;
         }
 
+        svg {
+            stroke-linejoin: round;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
             color: var(--text-medium);
