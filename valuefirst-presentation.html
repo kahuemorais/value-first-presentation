@@ -399,8 +399,6 @@
             line-height: 1.05;
             margin-bottom: 20px;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .failures-header p {
@@ -1011,18 +1009,18 @@
         }
 
         .phase-card .purpose {
-            font-size: 14px;
-            color: var(--purple-soft);
+            font-size: 17px;
+            color: var(--bg-cream);
             margin-bottom: 16px;
         }
 
         .phase-card .output {
             font-size: 14px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: var(--bg-cream);
-            background: var(--purple-vivid);
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
             padding: 10px 14px;
             display: inline-block;
             border-radius: 8px;
@@ -2032,177 +2030,119 @@
                         <p>Define the method first, how you plan, decide, ship and learn, then configure tools to enforce it. One source of truth per question. Retire any tool that competes with the system of record.</p>
                     </div>
                     <p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>05 — Talent Without Structure</span>
-                </div>
-                <div class="accordion-content">
-                    <p class="subtitle">Senior people, junior outcomes.</p>
-                    <div class="failure-section">
-                        <h5>Symptom</h5>
-                        <ul>
-                            <li>Impact capped by ambiguous ownership</li>
-                            <li>Overlapping mandates, missing feedback loops</li>
-                            <li>Best people quietly disengage, then leave</li>
-                        </ul>
-                    </div>
-                    <div class="failure-section">
-                        <h5>Why it persists</h5>
-                        <p>It is the most expensive failure and the slowest to surface. Senior talent rarely complains structurally, they adapt, then exit. By the time HR sees the trend, the structural debt is years deep.</p>
-                    </div>
-                    <div class="failure-section">
-                        <h5>Root Cause</h5>
-                        <p>The org chart describes reporting lines, not accountability. Roles are titles, not contracts. Performance is judged on activity, not outcomes, so senior operators are rewarded for the same behaviors that frustrate them.</p>
-                    </div>
-                    <div class="failure-section">
-                        <h5>Structural Fix</h5>
-                        <p>Define accountability per outcome, not per function. Pair senior talent with structural authority, budget, headcount, and the right to say no. If you wouldn't trust them to decide, don't hire them at that level.</p>
-                    </div>
-                    <p class="quote-small">"Senior talent doesn't leave for more money. It leaves for more authority, usually to a competitor with worse pay and a better structure."</p>
-                </div>
-            </div>
-        </div>
-        <div class="failures-grid">
-            <div class="failure-card">
-                <div class="failure-number">01</div>
-                <h3>No Strategic Direction</h3>
-                <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
-                <ul>
-                    <li>Teams ship features without business outcome</li>
-                    <li>Prioritization won by loudest voice</li>
-                    <li>Roadmaps long; convictions short</li>
-                </ul>
-                <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
-            </div>
-            <div class="failure-card">
-                <div class="failure-number">02</div>
-                <h3>Disconnected Execution</h3>
-                <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
-                <ul>
-                    <li>Roadmaps don't reconcile</li>
-                    <li>Launches surprise the go-to-market team</li>
-                    <li>Engineering ships features marketing can't position and sales can't price</li>
-                    <li>Customers receive value in fragments, not as a coherent product story</li>
-                </ul>
-                <p class="quote-small">"If your launches surprise your own GTM team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
-            </div>
-            <div class="failure-card">
-                <div class="failure-number">03</div>
-                <h3>Reactive Operations</h3>
-                <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
-                <ul>
-                    <li>Leaders arbitrating tickets instead of deciding</li>
-                    <li>Strategic work constantly displaced</li>
-                    <li>Calendar becomes the strategy</li>
-                </ul>
-                <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
-            </div>
-            <div class="failure-card">
-                <div class="failure-number">04</div>
-                <h3>Tools Without Method</h3>
-                <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
-                <ul>
-                    <li>Jira, Notion, Linear, HubSpot, Looker, Slack all present, none authoritative</li>
-                    <li>Data duplicated, statuses contradict</li>
-                    <li>Reporting rebuilt every quarter</li>
-                </ul>
-<p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
-            </div>
-        </div>
+</div>
     </section>
 
     <section class="cost-section">
         <div class="cost-header">
-            <h2>What Structural Drift Actually Costs</h2>
-            <p>Structural failures are rarely catastrophic. They are expensive precisely because they look survivable. Each quarter, the organization absorbs a tax it never names and pays it out of strategic capacity.</p>
+            <h2>What Structural Drift Actually Costs You</h2>
+            <p>Structural failures are rarely catastrophic. They are expensive precisely because they look survivable.</p>
         </div>
-        <p class="cost-context">Compounded over 18 months, structural drift typically costs more than the entire transformation program required to fix it. The bill is paid silently, in dashboards that never quite move and in senior hires that never quite land.</p>
+        <p class="cost-context">Compounded over 18 months, structural drift typically costs more than the entire transformation program required to fix it.</p>
         <div class="cost-grid">
             <div class="cost-item">
                 <div class="cost-percent">30%</div>
                 <div class="cost-details">
                     <h4>Coordination Tax</h4>
                     <p>Meetings, status, re-alignment</p>
-                    <span class="cost-impact">20 to 35% of senior time</span>
                 </div>
+                <div class="cost-impact">20-35% of senior time</div>
             </div>
             <div class="cost-item">
                 <div class="cost-percent">22%</div>
                 <div class="cost-details">
                     <h4>Rework</h4>
                     <p>Features rebuilt, scopes reopened</p>
-                    <span class="cost-impact">15 to 25% of eng. capacity</span>
                 </div>
+                <div class="cost-impact">15-25% of eng. capacity</div>
             </div>
             <div class="cost-item">
                 <div class="cost-percent">18%</div>
                 <div class="cost-details">
                     <h4>Decision Latency</h4>
                     <p>Bets postponed, windows missed</p>
-                    <span class="cost-impact">1 to 2 quarters of runway</span>
                 </div>
+                <div class="cost-impact">1-2 quarters of runway</div>
             </div>
             <div class="cost-item">
                 <div class="cost-percent">16%</div>
                 <div class="cost-details">
                     <h4>Talent Attrition</h4>
                     <p>Senior departures, silent quitting</p>
-                    <span class="cost-impact">1.5 to 2x salary per loss</span>
                 </div>
+                <div class="cost-impact">1.5-2x salary per loss</div>
             </div>
             <div class="cost-item">
                 <div class="cost-percent">14%</div>
                 <div class="cost-details">
                     <h4>Strategic Dilution</h4>
                     <p>Roadmap drifts toward requests</p>
-                    <span class="cost-impact">Lost category position</span>
                 </div>
+                <div class="cost-impact">Lost category position</div>
             </div>
         </div>
-        <p class="cost-quote">"The most expensive line item on your P&L is the one no accountant will ever book."</p>
+        <div class="cost-quote">"The most expensive line item on your P&L is the one no accountant will ever book."</div>
     </section>
 
     <section class="framework-section">
         <div class="framework-header">
             <h2>The Value First Delivery Framework</h2>
-            <p class="framework-description">The Value First Delivery Framework is a five-phase operating model designed to move a product organization from reactive execution to structural efficiency. Each phase is a structural intervention, not a workshop.</p>
+            <p>The Value First Delivery Framework is a five-phase operating model designed to move a product organization from reactive execution to structural efficiency. Each phase is a structural intervention, not a workshop.</p>
         </div>
+
         <div class="framework-grid">
             <div class="phase-card">
-                <div class="phase-number">01</div>
-                <h3>Diagnose</h3>
-                <p class="purpose">Map failures and value leaks</p>
+                <h3>01 Diagnose</h3>
+                <p class="purpose">Map where value actually leaks</p>
                 <p class="output">Structural diagnostic</p>
             </div>
             <div class="phase-card">
-                <div class="phase-number">02</div>
-                <h3>Align</h3>
-                <p class="purpose">Translate strategy into bets</p>
-                <p class="output">Bet portfolio and guardrails</p>
+                <h3>02 Align</h3>
+                <p class="purpose">Translate strategy into operating bets</p>
+                <p class="output">Bet portfolio & guardrails</p>
             </div>
             <div class="phase-card">
-                <div class="phase-number">03</div>
-                <h3>Design the System</h3>
+                <h3>03 Design</h3>
                 <p class="purpose">Define rights, cadence, intake</p>
                 <p class="output">Operating model v1</p>
             </div>
             <div class="phase-card">
-                <div class="phase-number">04</div>
-                <h3>Operate</h3>
-                <p class="purpose">Run the system, instrument loops</p>
+                <h3>04 Operate</h3>
+                <p class="purpose">Run the system; instrument the loops</p>
                 <p class="output">Live delivery cadence</p>
             </div>
             <div class="phase-card">
-                <div class="phase-number">05</div>
-                <h3>Scale Efficiently</h3>
-                <p class="purpose">Compound learning, reduce unit cost</p>
+                <h3>05 Scale</h3>
+                <p class="purpose">Compound learning; reduce unit cost</p>
                 <p class="output">Repeatable scale engine</p>
             </div>
         </div>
+
         <p class="framework-note">The phases are sequential by design. You cannot align a strategy you have not diagnosed, you cannot design a system around a strategy you have not aligned, and you cannot scale a system you have not yet operated under real conditions. Skipping phases is the most common failure mode.</p>
         <p class="framework-quote">"The deliverable of every phase is a change in how the organization decides, ships, and learns, not a document, not a workshop, not a deck."</p>
+    </section>
+
+    <section class="engagement-section">
+        <h3>Typical Engagement</h3>
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <h4>Engagement Length</h4>
+                <ul>
+                    <li><strong>Diagnose:</strong> 3 to 4 weeks</li>
+                    <li><strong>Align:</strong> 2 to 3 weeks</li>
+                    <li><strong>Design:</strong> 4 to 6 weeks</li>
+                    <li><strong>Operate:</strong> one full delivery cycle (8 to 12 weeks)</li>
+                    <li><strong>Scale:</strong> continuous</li>
+                </ul>
+            </div>
+            <div class="engagement-card">
+                <h4>Leadership Time Required</h4>
+                <ul>
+                    <li><strong>Phases 1 to 3:</strong> 4 to 6 hours per week from the executive team</li>
+                    <li><strong>Phase 4 onwards:</strong> Drops to 1 to 2 hours per week once the system is operating</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section class="phase-details">
@@ -2582,29 +2522,6 @@
         </div>
     </section>
 
-    <section class="engagement-section">
-        <h3>Typical Engagement</h3>
-        <div class="engagement-grid">
-            <div class="engagement-card">
-                <h4>Engagement Length</h4>
-                <ul>
-                    <li><strong>Diagnose:</strong> 3 to 4 weeks</li>
-                    <li><strong>Align:</strong> 2 to 3 weeks</li>
-                    <li><strong>Design:</strong> 4 to 6 weeks</li>
-                    <li><strong>Operate:</strong> one full delivery cycle (8 to 12 weeks)</li>
-                    <li><strong>Scale:</strong> continuous</li>
-                </ul>
-            </div>
-            <div class="engagement-card">
-                <h4>Leadership Time Required</h4>
-                <ul>
-                    <li><strong>Phases 1 to 3:</strong> 4 to 6 hours per week from the executive team</li>
-                    <li><strong>Phase 4 onwards:</strong> Drops to 1 to 2 hours per week once the system is operating</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <section class="self-assessment-final">
         <h2>Self-Assessment</h2>
         <p>Score each statement 0 (never true) to 3 (consistently true). Total below 18 indicates structural drift; below 12, intervention is overdue.</p>
@@ -2736,7 +2653,7 @@
                 </div>
             </div>
             <div class="case-footer">
-                <blockquote>"We didn't hire our way out of it. We designed our way out of it." VP of Product</blockquote>
+                <blockquote>"We didn't hire our way out of it. We designed our way out of it."<cite>— VP of Product</cite></blockquote>
             </div>
         </div>
     </section>
