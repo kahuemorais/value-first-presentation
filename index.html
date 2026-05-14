@@ -1580,6 +1580,12 @@
             .hero {
                 grid-template-columns: 1fr;
             }
+            .hero-visual {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 60px clamp(40px, 8vw, 80px);
+            }
             .intro-section {
                 grid-template-columns: 1fr;
             }
@@ -1608,9 +1614,10 @@
                 min-height: auto;
             }
             .hero-visual {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 padding: 60px 40px;
-                text-align: center;
             }
             .diagram-circle {
                 width: 200px;
