@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value First | A Diagnostic on Structural Failures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #F9F7F4;
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1625;
+            --text-medium: #4A4458;
+            --text-light: #6B6580;
+            --purple-deep: #2D1B4E;
+            --purple-rich: #4A2882;
+            --purple-vivid: #7B3FCC;
+            --purple-soft: #A78BCA;
+            --purple-muted: #C4B5D9;
+            --surface-light: #EDE9F4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-medium);
+            line-height: 1.6;
+            background: var(--bg-cream);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--purple-deep);
+            color: var(--bg-cream);
+        }
+
+        .hero-content {
+            padding: 80px clamp(40px, 8vw, 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--purple-vivid);
+            border-radius: 50%;
+        }
+
+        .hero-badge span {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--purple-muted);
+        }
+
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+            color: var(--bg-cream);
+        }
+
+        .hero-sub {
+            font-size: clamp(18px, 2.5vw, 24px);
+            line-height: 1.4;
+            color: var(--purple-muted);
+            max-width: 480px;
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: auto;
+            padding-top: 64px;
+        }
+
+        .stat {
+            padding-left: 20px;
+            border-left: 2px solid var(--purple-vivid);
+        }
+
+        .stat-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--bg-cream);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--purple-soft);
+            margin-top: 6px;
+        }
+
+        .hero-visual {
+            background: var(--purple-rich);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+            position: relative;
+        }
+
+        .hero-diagram {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .diagram-circle {
+            width: 280px;
+            height: 280px;
+            border: 2px solid var(--purple-muted);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .diagram-inner {
+            width: 160px;
+            height: 160px;
+            border: 2px solid var(--purple-vivid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diagram-core {
+            width: 60px;
+            height: 60px;
+            background: var(--purple-vivid);
+            border-radius: 50%;
+        }
+
+        .diagram-label {
+            position: absolute;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--purple-muted);
+        }
+
+        .diagram-label.top { top: 30px; left: 50%; transform: translateX(-50%); }
+        .diagram-label.right { right: 5px; top: 50%; transform: translateY(-50%); }
+        .diagram-label.bottom { bottom: 30px; left: 50%; transform: translateX(-50%); }
+        .diagram-label.left { left: 5px; top: 50%; transform: translateY(-50%); }
+
+        .quote-section {
+            background: var(--surface-light);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            border-top: 3px solid var(--purple-vivid);
+        }
+
+        .quote-section blockquote {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 600;
+            color: var(--purple-deep);
+            line-height: 1.3;
+            max-width: 900px;
+        }
+
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 0;
+        }
+
+        .intro-text {
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            background: var(--bg-cream);
+        }
+
+        .intro-text h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700;
+            color: var(--purple-deep);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .intro-text p {
+            font-size: 17px;
+            line-height: 1.75;
+            max-width: 580px;
+            color: var(--text-medium);
+        }
+
+        .intro-text p + p {
+            margin-top: 20px;
+        }
+
+        .intro-audience {
+            background: var(--purple-deep);
+            color: var(--bg-cream);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .intro-audience h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--bg-cream);
+            margin-bottom: 24px;
+        }
+
+        .intro-audience ul {
+            list-style: none;
+        }
+
+        .intro-audience li {
+            font-size: 17px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            color: #E8E4DD;
+        }
+
+        .intro-audience li:last-child {
+            border-bottom: none;
+        }
+
+        .intro-howto {
+            background: var(--purple-vivid);
+            color: var(--bg-cream);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .intro-howto h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--bg-cream);
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .intro-howto p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--bg-cream);
+            max-width: 500px;
+        }
+
+        .thesis-section {
+            background: var(--purple-deep);
+            color: var(--bg-cream);
+            padding: clamp(80px, 12vw, 160px) clamp(40px, 8vw, 120px);
+            text-align: center;
+        }
+
+        .thesis-section h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .thesis-section .lead {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--purple-soft);
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        .thesis-quote {
+            display: block;
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-style: italic;
+            font-weight: 500;
+            color: var(--purple-muted);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            padding: 28px 32px;
+            border-left: 4px solid var(--purple-vivid);
+            background: rgba(123, 63, 204, 0.06);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .thesis-text {
+            font-size: 17px;
+            color: var(--purple-muted);
+            max-width: 700px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .thesis-is-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thesis-is-card {
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .thesis-is-positive {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .thesis-is-negative {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .thesis-is-card h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--bg-cream);
+        }
+
+        .thesis-is-card p {
+            font-size: 15px;
+            color: var(--bg-cream);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .thesis-is-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .thesis-is-card {
+                padding: 20px;
+            }
+        }
+
+        .failures-section {
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            background: var(--bg-white);
+        }
+
+        .failures-header {
+            margin-bottom: 64px;
+        }
+
+        .failures-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            line-height: 1.05;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .failures-header p {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 500px;
+        }
+
+        .accordion-mobile {
+            display: none;
+        }
+
+        .failures-grid {
+            display: none;
+            flex-wrap: nowrap;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            background: var(--bg-white);
+        }
+
+        .failure-card {
+            flex: 1;
+            min-width: 160px;
+            background: var(--bg-white);
+            padding: 24px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--purple-muted);
+        }
+
+        .failure-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--surface-light);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .failure-card h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--purple-deep);
+            margin-bottom: 6px;
+        }
+
+        .failure-card .subtitle {
+            font-size: 13px;
+            color: var(--purple-rich);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .failure-card ul {
+            list-style: none;
+        }
+
+        .failure-card li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-medium);
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .failure-card li:last-child {
+            border-bottom: none;
+        }
+
+        .failure-card .quote-small {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .cost-section {
+            background: var(--surface-light);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .cost-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 16px;
+        }
+
+        .cost-header p {
+            font-size: 17px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .cost-context {
+            font-size: 15px;
+            color: var(--text-medium);
+            margin-bottom: 48px;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .cost-quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--purple-rich);
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px;
+            background: var(--surface-light);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cost-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+        }
+
+        .cost-item {
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px 20px;
+            background: var(--bg-white);
+            border: 1px solid var(--purple-muted);
+            border-radius: 16px;
+        }
+
+        .cost-percent {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--purple-rich);
+            line-height: 1;
+        }
+
+        .cost-details h4 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--purple-deep);
+            margin-bottom: 6px;
+        }
+
+        .cost-details p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .cost-impact {
+            font-size: 12px;
+            color: var(--purple-vivid);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .framework-section {
+            background: var(--purple-deep);
+            color: var(--bg-cream);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .framework-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--bg-cream);
+        }
+
+        .framework-header > p {
+            font-size: 17px;
+            color: var(--purple-muted);
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+.framework-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            background: var(--purple-deep);
+            align-items: stretch;
+        }
+
+        .phase-card {
+            background: var(--purple-deep);
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+        }
+
+        .phase-card > * {
+            margin-bottom: 12px;
+        }
+
+        .phase-card > *:last-child {
+            margin-bottom: 0;
+        }
+
+        .framework-note {
+            font-size: 15px;
+            color: var(--purple-muted);
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .framework-quote {
+            font-size: 17px;
+            font-style: italic;
+            color: var(--bg-cream);
+            margin-top: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 24px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--purple-vivid);
+            max-width: 700px;
+            text-align: center;
+        }
+
+.phase-details {
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            background: var(--bg-white);
+        }
+
+        .phase-details > h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 48px;
+        }
+
+        .accordion-mobile {
+            display: none;
+        }
+
+        .phase-details-grid {
+            display: none;
+            flex-wrap: nowrap;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+        }
+
+        .phase-detail-card {
+            flex: 1;
+            min-width: 240px;
+            border: 1px solid var(--purple-muted);
+            border-radius: 20px;
+            padding: 24px 20px;
+        }
+
+        @media (min-width: 1200px) {
+            .failures-grid,
+            .phase-details-grid {
+                display: flex;
+            }
+
+            .accordion-mobile {
+                display: none;
+            }
+
+            .phase-details {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                align-items: start;
+            }
+            .phase-details > h3 {
+                grid-column: 1 / -1;
+            }
+            .phase-details-grid {
+                display: contents;
+            }
+            .phase-detail-card {
+                min-width: auto;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .phase-detail-card:nth-child(4),
+            .phase-detail-card:nth-child(5) {
+                grid-column: span 1;
+            }
+        }
+            .phase-details > h3 {
+                grid-column: 1 / -1;
+            }
+            .phase-detail-card {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 0;
+            }
+            .phase-detail-header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 8px;
+            }
+            .phase-detail-number {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+
+        .phase-detail-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: start;
+        }
+
+        .phase-detail-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--purple-vivid);
+            background: rgba(123, 63, 204, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .phase-detail-title h4 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--purple-deep);
+            margin-bottom: 6px;
+        }
+
+        .phase-detail-title p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .phase-detail-section {
+            margin-bottom: 16px;
+        }
+
+        .phase-detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase-detail-section h5 {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--purple-rich);
+            margin-bottom: 8px;
+        }
+
+        .phase-detail-section ul {
+            list-style: none;
+        }
+
+        .phase-detail-section li {
+            font-size: 14px;
+            color: var(--text-medium);
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .phase-detail-section li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--purple-soft);
+        }
+
+        .phase-detail-section p {
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        .phase-quote {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--purple-rich);
+            padding: 12px 16px;
+            background: var(--surface-light);
+            border-left: 3px solid var(--purple-vivid);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .engagement-section {
+            background: var(--surface-light);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .engagement-section h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 48px;
+        }
+
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .engagement-card {
+            background: var(--bg-white);
+            padding: 32px;
+            border: 1px solid var(--purple-muted);
+            border-radius: 16px;
+        }
+
+        .engagement-card h4 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--purple-deep);
+            margin-bottom: 16px;
+        }
+
+        .engagement-card ul {
+            list-style: none;
+        }
+
+        .engagement-card li {
+            font-size: 14px;
+            color: var(--text-medium);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--surface-light);
+        }
+
+        .engagement-card li:last-child {
+            border-bottom: none;
+        }
+
+        .self-assessment-questions {
+            background: var(--bg-white);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .self-assessment-questions h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 16px;
+        }
+
+        .self-assessment-questions > p {
+            font-size: 17px;
+            color: var(--text-light);
+            margin-bottom: 48px;
+        }
+
+        .question-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question-item {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--surface-light);
+            align-items: start;
+        }
+
+        .question-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--purple-vivid);
+        }
+
+        .question-text {
+            font-size: 15px;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .how-to-read {
+            background: var(--purple-deep);
+            padding: clamp(60px, 8vw, 100px) clamp(40px, 8vw, 120px);
+        }
+
+        .how-to-read h4 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--bg-cream);
+            margin-bottom: 20px;
+        }
+
+        .how-to-read p {
+            font-size: 15px;
+            color: var(--purple-muted);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .phase-card {
+            background: rgba(45, 27, 78, 0.7);
+            padding: 32px 24px;
+            border-radius: 12px;
+        }
+
+        .phase-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--bg-cream);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .phase-card h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--bg-cream);
+        }
+
+        .phase-card .purpose {
+            font-size: 14px;
+            color: var(--purple-soft);
+            margin-bottom: 16px;
+        }
+
+        .phase-card .output {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--bg-cream);
+            background: var(--purple-vivid);
+            padding: 10px 14px;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        .case-section {
+            background: var(--bg-cream);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .case-header {
+            margin-bottom: 48px;
+        }
+
+        .case-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            color: var(--purple-deep);
+            margin-bottom: 12px;
+        }
+
+        .case-header > p {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 600px;
+        }
+
+        .case-card {
+            background: var(--bg-white);
+            border: 1px solid var(--purple-muted);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .case-title {
+            background: var(--purple-deep);
+            color: var(--bg-cream);
+            padding: 32px 40px;
+        }
+
+        .case-title h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .case-title p {
+            font-size: 15px;
+            color: var(--purple-soft);
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .metric {
+            padding: 32px 24px;
+            text-align: center;
+            border-right: 1px solid var(--purple-muted);
+            background: var(--bg-white);
+        }
+
+        .metric:last-child {
+            border-right: none;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .metric-values {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .metric-old {
+            font-size: 18px;
+            color: #AAA;
+            text-decoration: line-through;
+        }
+
+        .metric-arrow {
+            font-size: 14px;
+            color: var(--purple-vivid);
+        }
+
+        .metric-new {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--purple-deep);
+        }
+
+        .case-footer {
+            padding: 32px 40px;
+            border-top: 1px solid var(--purple-muted);
+        }
+
+        .case-footer blockquote {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--purple-deep);
+        }
+
+        .self-assessment-final {
+            background: var(--purple-deep);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+        }
+
+        .self-assessment-final h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--bg-cream);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .self-assessment-final > p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .question-list {
+            max-width: 700px;
+            margin: 0 auto 48px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.12) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .question-item {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            align-items: start;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        .question-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--bg-cream);
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: var(--bg-cream);
+            line-height: 1.6;
+        }
+
+        .score-interpretation {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 48px;
+            color: var(--bg-cream);
+        }
+
+        .score-interpretation h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--purple-vivid);
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .score-ranges {
+            display: grid;
+            gap: 16px;
+        }
+
+        .score-range {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .score-range .range-score {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            min-width: 100px;
+            color: var(--bg-cream);
+        }
+
+        .score-range .range-status {
+            font-size: 15px;
+            color: var(--bg-cream);
+            opacity: 0.85;
+        }
+
+        .score-note {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .score-note p {
+            font-size: 15px;
+            color: var(--purple-soft);
+            line-height: 1.8;
+        }
+
+.cta-section {
+            background: var(--purple-vivid);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+.cta-section h2 {
+            position: relative;
+            z-index: 1;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--bg-cream);
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-text-card {
+            background: rgba(255,255,255,0.08);
+            padding: 32px;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .cta-text-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--bg-cream);
+            margin: 0 0 16px 0;
+        }
+
+        .cta-text-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cta-quote {
+            background: rgba(255,255,255,0.1);
+            padding: 32px;
+            border-radius: 16px;
+            border-left: 4px solid var(--bg-cream);
+            font-size: 17px;
+            font-style: italic;
+            color: var(--bg-cream);
+            margin: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .cta-next-step-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .cta-next-step-header {
+            background: rgba(255,255,255,0.15);
+            padding: 20px 28px;
+        }
+
+        .cta-next-step-header h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--bg-cream);
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .cta-next-step-body {
+            padding: 28px;
+        }
+
+        .cta-next-step-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--bg-cream);
+            margin: 0 0 12px 0;
+        }
+
+        .cta-next-step-desc {
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 20px 0;
+        }
+
+        .cta-contact-details {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            margin-bottom: 16px;
+        }
+
+        .cta-contact {
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 12px 0;
+        }
+
+        .cta-website {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--bg-cream);
+            letter-spacing: 1px;
+            margin: 0 0 20px 0;
+        }
+
+        .cta-next-step-body .cta-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .cta-section .cta-button {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-text-card,
+            .cta-quote {
+                padding: 24px;
+            }
+
+            .cta-next-step-body {
+                padding: 24px;
+            }
+        }
+
+        .cta-section p {
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            max-width: 550px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-quote {
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--bg-cream);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            border-left: 4px solid var(--bg-cream);
+        }
+
+        .cta-next-step {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.1);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 0 auto 40px;
+            max-width: 550px;
+            text-align: left;
+        }
+
+        .cta-next-step h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--bg-cream);
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+
+        .cta-next-step p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--bg-cream);
+            margin: 0 0 16px 0;
+        }
+
+        .cta-contact {
+            font-size: 14px;
+            color: var(--purple-soft);
+            margin-bottom: 16px !important;
+        }
+
+        .cta-website {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--purple-vivid);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--bg-cream);
+            color: var(--purple-vivid);
+            padding: 20px 56px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: var(--text-dark);
+            color: var(--bg-cream);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+        }
+
+        .assessment-section {
+            background: var(--purple-deep);
+            padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .assessment-header {
+            text-align: center;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .assessment-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 800;
+            color: var(--bg-cream);
+            margin-bottom: 16px;
+        }
+
+        .assessment-header > p {
+            font-size: 17px;
+            color: var(--purple-soft);
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, var(--purple-rich) 0%, var(--purple-vivid) 100%);
+            border-radius: 20px;
+            padding: 40px 48px;
+            max-width: 700px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .score-card h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--bg-cream);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .score-note {
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .score-note p {
+            font-size: 14px;
+            color: var(--bg-cream);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: var(--purple-deep);
+            padding: 48px clamp(40px, 8vw, 120px);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--purple-soft);
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+            .intro-audience {
+                padding: 60px clamp(40px, 8vw, 80px);
+            }
+            .intro-howto {
+                padding: 60px clamp(40px, 8vw, 80px);
+            }
+            .case-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .case-metrics .metric {
+                border-bottom: 1px solid var(--purple-muted);
+            }
+            .framework-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: auto;
+            }
+            .hero-visual {
+                display: block;
+                padding: 60px 40px;
+            }
+            .diagram-circle {
+                width: 200px;
+                height: 200px;
+            }
+            .diagram-inner {
+                width: 120px;
+                height: 120px;
+            }
+            .diagram-core {
+                width: 40px;
+                height: 40px;
+            }
+            .diagram-label.top { top: 20px; }
+            .diagram-label.bottom { bottom: 20px; }
+            .diagram-label.left { left: 5px; }
+            .diagram-label.right { right: 5px; }
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+            .case-metrics {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+@media (max-width: 768px) {
+            .failures-grid,
+            .phase-details-grid {
+                display: none;
+            }
+
+            .accordion-mobile {
+                display: block;
+            }
+
+            .accordion-mobile .accordion-item {
+                margin-bottom: 16px;
+            }
+
+            .accordion-mobile .accordion-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 24px;
+                background: var(--bg-white);
+                border: 1px solid var(--purple-muted);
+                border-radius: 16px;
+                cursor: pointer;
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-size: 17px;
+                font-weight: 700;
+                color: var(--purple-deep);
+                transition: all 0.3s ease;
+            }
+
+            .accordion-mobile .accordion-header:hover {
+                background: var(--surface-light);
+            }
+
+            .accordion-mobile .accordion-header.active {
+                border-radius: 16px 16px 0 0;
+            }
+
+            .accordion-mobile .accordion-header::after {
+                content: '+';
+                font-size: 24px;
+                color: var(--purple-rich);
+                transition: transform 0.3s ease;
+            }
+
+            .accordion-mobile .accordion-header.active::after {
+                transform: rotate(45deg);
+            }
+
+            .accordion-mobile .accordion-content {
+                display: none;
+                padding: 0 24px 20px;
+                background: var(--bg-white);
+                border: 1px solid var(--purple-muted);
+                border-top: none;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .accordion-mobile .accordion-content.active {
+                display: block;
+            }
+
+            .failures-header > h2 {
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-size: clamp(28px, 6vw, 44px);
+                font-weight: 800;
+                color: var(--purple-deep);
+                margin-bottom: 8px;
+            }
+
+            .failures-header > p {
+                font-size: 15px;
+                color: var(--text-light);
+                margin-bottom: 32px;
+            }
+
+            .accordion-mobile .subtitle {
+                font-size: 14px;
+                color: var(--purple-rich);
+                font-weight: 500;
+                margin: 16px 0 12px;
+            }
+
+            .accordion-mobile .failure-section {
+                margin-bottom: 16px;
+            }
+
+            .accordion-mobile .failure-section h5 {
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--purple-deep);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+            }
+
+            .accordion-mobile .failure-section p {
+                font-size: 13px;
+                color: var(--text-medium);
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+
+            .accordion-mobile ul {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .accordion-mobile li {
+                font-size: 14px;
+                color: var(--text-medium);
+                padding: 6px 0;
+                border-bottom: 1px solid var(--surface-light);
+            }
+
+            .accordion-mobile li:last-child {
+                border-bottom: none;
+            }
+
+            .accordion-mobile .quote-small {
+                font-style: italic;
+                color: var(--text-light);
+                font-size: 13px;
+                margin-top: 12px;
+                padding: 12px;
+                background: var(--surface-light);
+                border-radius: 8px;
+            }
+
+            .accordion-mobile .phase-detail-section {
+                margin-bottom: 16px;
+            }
+
+            .accordion-mobile .phase-detail-section h5 {
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--purple-deep);
+                margin-bottom: 8px;
+            }
+
+            .accordion-mobile .phase-detail-section p {
+                font-size: 14px;
+                color: var(--text-medium);
+                line-height: 1.5;
+            }
+
+            .phase-details > h3 {
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-size: clamp(24px, 5vw, 36px);
+                font-weight: 800;
+                color: var(--purple-deep);
+                margin-bottom: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <span>Strategic Ebook 2026</span>
+            </div>
+            <h1>Value First</h1>
+            <p class="hero-sub">A diagnostic on the five structural failures stalling digital products and the operating model that fixes them.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Structural Failures</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Framework Phases</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Min Read</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-diagram">
+                <div class="diagram-circle">
+                    <span class="diagram-label top">Strategy</span>
+                    <span class="diagram-label right">Execution</span>
+                    <span class="diagram-label bottom">Operations</span>
+                    <span class="diagram-label left">Structure</span>
+                    <div class="diagram-inner">
+                        <div class="diagram-core"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote>If your roadmap is full but your business is flat, you don't have a delivery problem. You have a structure problem.</blockquote>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2>The Real Bottleneck Isn't Where You're Looking</h2>
+            <p>Most leaders are convinced their product is stuck because of the team, the stack, or the market. They reorganize squads, swap tools, hire seniors, run another offsite. Six months later, the dashboards look the same.</p>
+            <p>The honest diagnosis is uncomfortable: the product isn't moving because the operating structure around it cannot convert effort into outcomes. Talent is wasted on coordination. Tools accumulate without method. Strategy is announced but never operationalized. Every quarter, the organization ships more and learns less.</p>
+            <p>This ebook is a field guide. It names the five structural failures we see in almost every stalled digital product, quantifies what they cost, and lays out the delivery framework we use at Value First to repair them in practice, not in theory.</p>
+            <p>It is written for founders, CPOs, COOs and heads of engineering who suspect the problem is not the people in the room and want a vocabulary precise enough to act on that suspicion.</p>
+        </div>
+        <div class="intro-audience">
+            <h3>Who this is for</h3>
+            <ul>
+                <li>Founders and CPOs</li>
+                <li>COOs and Heads of Engineering</li>
+                <li>Operating Partners</li>
+                <li>Products $5M to $200M ARR</li>
+                <li>Those who've tried the obvious remedies</li>
+            </ul>
+        </div>
+        <div class="intro-howto">
+            <h3>How to read this ebook</h3>
+            <p>Pages 03 to 10 diagnose the structural failures. Pages 11 to 16 lay out the Value First operating model. Page 17 shows it applied. Page 18 is the self-assessment. Page 19 is the next step.</p>
+            <p>Read it in one sitting (about 25 minutes). Mark the failures you recognize. Score the self-assessment. If three or more failures resonate, the structural drift is already compounding.</p>
+        </div>
+    </section>
+
+    <section class="thesis-section">
+        <h2>Scaling is Easy.<br>Scaling Efficiently is Where Companies Fail.</h2>
+        <p class="lead">Almost any company can scale by adding people, budget, and tools. Few can scale while keeping unit economics, focus, and decision quality intact.</p>
+        <p class="thesis-text">Inefficient scale looks productive on the surface: more squads, more rituals, more dashboards. But underneath, the cost of producing each unit of value is rising. Cycle times grow, ownership blurs, and strategic bets dilute into a backlog of small features nobody can connect to a business outcome.</p>
+        <p class="thesis-text">The trap is that the symptoms look like execution problems, so leaders apply execution remedies: more sprints, more standups, more OKRs. The structure stays untouched, and the tax compounds.</p>
+        <div class="thesis-quote">"It is not a people problem. It is not a tech problem. It is a structure problem."</div>
+        <p class="thesis-text">Fix the structure, and the same people, with the same tools, start producing outcomes that previously felt impossible. That is the entire premise of the Value First operating model and the rest of this ebook is the evidence.</p>
+        <div class="thesis-is-grid">
+            <div class="thesis-is-card thesis-is-positive">
+                <h3>What this ebook is</h3>
+                <p>A structural diagnostic and an operating playbook. Direct, opinionated, built from engagements with product organizations between $5M and $200M ARR.</p>
+            </div>
+            <div class="thesis-is-card thesis-is-negative">
+                <h3>What it is not</h3>
+                <p>A motivational read. A framework for framework's sake. A pitch. There is no tooling to buy and no methodology to license at the end.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="failures-section">
+        <div class="failures-header">
+            <h2>The Five Structural Failures</h2>
+            <p>Each failure compounds silently, disguised as an execution problem.</p>
+        </div>
+        <div class="accordion-mobile" id="failures-accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>01 — No Strategic Direction</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Teams ship features without business outcome</li>
+                            <li>Prioritization won by loudest voice</li>
+                            <li>Roadmaps long; convictions short</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It survives because everyone is busy. Activity is mistaken for progress, and nobody wants to be the executive who pauses delivery to question direction.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Strategy was authored as a narrative, not translated into measurable bets, guardrails, and explicit trade-offs. Without a decision framework, every request looks equally valid and the loudest stakeholder wins by default.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Convert strategy into a small set of strategic bets with owners, leading indicators, and explicit non-goals. Make 'no' a structural answer, not a political one. Publish what you will not do this quarter.</p>
+                    </div>
+                    <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>02 — Disconnected Execution</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Roadmaps don't reconcile</li>
+                            <li>Launches surprise the go-to-market team</li>
+                            <li>Customers receive value in fragments</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It persists because each function is individually high-performing. Local excellence masks a global failure to converge and leadership rewards the outputs they can see in their own dashboards.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>There is no shared delivery cadence across functions. Each area runs its own rituals on its own clock, with its own definition of done, and 'alignment' is delegated to whoever attends the most meetings.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Install a single delivery cadence with cross-functional checkpoints tied to the same outcomes. One backlog of bets, one definition of done, one review. If a function isn't in the cadence, it's not in the bet.</p>
+                    </div>
+                    <p class="quote-small">"If your launches surprise your own GTM team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>03 — Reactive Operations</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Leaders arbitrating tickets instead of deciding</li>
+                            <li>Strategic work constantly displaced</li>
+                            <li>Calendar becomes the strategy</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It feels productive. Responsiveness is praised. The cost, strategic work displaced indefinitely, is invisible until a competitor launches the bet you postponed for two quarters.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Operations were never designed. They emerged. There is no explicit model for how decisions, exceptions, and escalations should flow, so every request defaults to the most senior person in the chain.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Design the operating system: decision rights, SLAs for internal requests, intake funnels, and a visible queue. Replace heroics with a system. Protect at least 60% of leadership time for strategic work, in writing.</p>
+                    </div>
+                    <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>04 — Tools Without Method</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Jira, Notion, Linear, HubSpot, Slack all present, none authoritative</li>
+                            <li>Data duplicated, statuses contradict</li>
+                            <li>Reporting rebuilt every quarter</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>Tools are easy to buy and politically cheap to adopt. Method is hard to agree on and expensive to enforce. So organizations keep buying tools, hoping configuration will substitute for decision-making.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>Tools were adopted to solve symptoms, not to instrument a method. Without a shared operating method, every tool becomes a tribal dialect and every team builds its own private workflow on top of the official one.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Define the method first, how you plan, decide, ship and learn, then configure tools to enforce it. One source of truth per question. Retire any tool that competes with the system of record.</p>
+                    </div>
+                    <p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>05 — Talent Without Structure</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Senior people, junior outcomes.</p>
+                    <div class="failure-section">
+                        <h5>Symptom</h5>
+                        <ul>
+                            <li>Impact capped by ambiguous ownership</li>
+                            <li>Overlapping mandates, missing feedback loops</li>
+                            <li>Best people quietly disengage, then leave</li>
+                        </ul>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Why it persists</h5>
+                        <p>It is the most expensive failure and the slowest to surface. Senior talent rarely complains structurally, they adapt, then exit. By the time HR sees the trend, the structural debt is years deep.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Root Cause</h5>
+                        <p>The org chart describes reporting lines, not accountability. Roles are titles, not contracts. Performance is judged on activity, not outcomes, so senior operators are rewarded for the same behaviors that frustrate them.</p>
+                    </div>
+                    <div class="failure-section">
+                        <h5>Structural Fix</h5>
+                        <p>Define accountability per outcome, not per function. Pair senior talent with structural authority, budget, headcount, and the right to say no. If you wouldn't trust them to decide, don't hire them at that level.</p>
+                    </div>
+                    <p class="quote-small">"Senior talent doesn't leave for more money. It leaves for more authority, usually to a competitor with worse pay and a better structure."</p>
+                </div>
+            </div>
+        </div>
+        <div class="failures-grid">
+            <div class="failure-card">
+                <div class="failure-number">01</div>
+                <h3>No Strategic Direction</h3>
+                <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
+                <ul>
+                    <li>Teams ship features without business outcome</li>
+                    <li>Prioritization won by loudest voice</li>
+                    <li>Roadmaps long; convictions short</li>
+                </ul>
+                <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-number">02</div>
+                <h3>Disconnected Execution</h3>
+                <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
+                <ul>
+                    <li>Roadmaps don't reconcile</li>
+                    <li>Launches surprise the go-to-market team</li>
+                    <li>Customers receive value in fragments</li>
+                </ul>
+                <p class="quote-small">"If your launches surprise your own GTM team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-number">03</div>
+                <h3>Reactive Operations</h3>
+                <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
+                <ul>
+                    <li>Leaders arbitrating tickets instead of deciding</li>
+                    <li>Strategic work constantly displaced</li>
+                    <li>Calendar becomes the strategy</li>
+                </ul>
+                <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
+            </div>
+            <div class="failure-card">
+                <div class="failure-number">04</div>
+                <h3>Tools Without Method</h3>
+                <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
+                <ul>
+                    <li>Jira, Notion, Linear, HubSpot, Slack all present, none authoritative</li>
+                    <li>Data duplicated, statuses contradict</li>
+                    <li>Reporting rebuilt every quarter</li>
+                </ul>
+<p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cost-section">
+        <div class="cost-header">
+            <h2>What Structural Drift Actually Costs</h2>
+            <p>Structural failures are rarely catastrophic. They are expensive precisely because they look survivable. Each quarter, the organization absorbs a tax it never names and pays it out of strategic capacity.</p>
+        </div>
+        <p class="cost-context">Compounded over 18 months, structural drift typically costs more than the entire transformation program required to fix it. The bill is paid silently, in dashboards that never quite move and in senior hires that never quite land.</p>
+        <div class="cost-grid">
+            <div class="cost-item">
+                <div class="cost-percent">30%</div>
+                <div class="cost-details">
+                    <h4>Coordination Tax</h4>
+                    <p>Meetings, status, re-alignment</p>
+                    <span class="cost-impact">20 to 35% of senior time</span>
+                </div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-percent">22%</div>
+                <div class="cost-details">
+                    <h4>Rework</h4>
+                    <p>Features rebuilt, scopes reopened</p>
+                    <span class="cost-impact">15 to 25% of eng. capacity</span>
+                </div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-percent">18%</div>
+                <div class="cost-details">
+                    <h4>Decision Latency</h4>
+                    <p>Bets postponed, windows missed</p>
+                    <span class="cost-impact">1 to 2 quarters of runway</span>
+                </div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-percent">16%</div>
+                <div class="cost-details">
+                    <h4>Talent Attrition</h4>
+                    <p>Senior departures, silent quitting</p>
+                    <span class="cost-impact">1.5 to 2x salary per loss</span>
+                </div>
+            </div>
+            <div class="cost-item">
+                <div class="cost-percent">14%</div>
+                <div class="cost-details">
+                    <h4>Strategic Dilution</h4>
+                    <p>Roadmap drifts toward requests</p>
+                    <span class="cost-impact">Lost category position</span>
+                </div>
+            </div>
+        </div>
+        <p class="cost-quote">"The most expensive line item on your P&L is the one no accountant will ever book."</p>
+    </section>
+
+    <section class="framework-section">
+        <div class="framework-header">
+            <h2>The Value First Delivery Framework</h2>
+            <p class="framework-description">The Value First Delivery Framework is a five-phase operating model designed to move a product organization from reactive execution to structural efficiency. Each phase is a structural intervention, not a workshop.</p>
+        </div>
+        <div class="framework-grid">
+            <div class="phase-card">
+                <div class="phase-number">01</div>
+                <h3>Diagnose</h3>
+                <p class="purpose">Map failures and value leaks</p>
+                <p class="output">Structural diagnostic</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-number">02</div>
+                <h3>Align</h3>
+                <p class="purpose">Translate strategy into bets</p>
+                <p class="output">Bet portfolio and guardrails</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-number">03</div>
+                <h3>Design the System</h3>
+                <p class="purpose">Define rights, cadence, intake</p>
+                <p class="output">Operating model v1</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-number">04</div>
+                <h3>Operate</h3>
+                <p class="purpose">Run the system, instrument loops</p>
+                <p class="output">Live delivery cadence</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-number">05</div>
+                <h3>Scale Efficiently</h3>
+                <p class="purpose">Compound learning, reduce unit cost</p>
+                <p class="output">Repeatable scale engine</p>
+            </div>
+        </div>
+        <p class="framework-note">The phases are sequential by design. You cannot align a strategy you have not diagnosed, you cannot design a system around a strategy you have not aligned, and you cannot scale a system you have not yet operated under real conditions. Skipping phases is the most common failure mode.</p>
+        <p class="framework-quote">"The deliverable of every phase is a change in how the organization decides, ships, and learns, not a document, not a workshop, not a deck."</p>
+    </section>
+
+    <section class="phase-details">
+        <h3>Delivery Framework: Phase Details</h3>
+
+        <div class="accordion-mobile" id="phase-details-accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>01 — Diagnose</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Before you fix anything, map where value actually leaks.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Interview operators across product, eng, GTM and finance, separately.</li>
+                            <li>Trace 3 to 5 recent decisions end-to-end: who decided, on what evidence, in how long.</li>
+                            <li>Quantify cycle time, rework rate, and decision latency.</li>
+                            <li>Identify the top three structural failures by business impact, not noise.</li>
+                            <li>Document evidence verbatim, patterns matter more than opinions.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A 10 to 15 page structural diagnostic with named failures, evidence, and a ranked intervention plan. No opinions, only observed patterns.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Treating the diagnostic as a survey instead of an investigation. If everyone agrees on the findings in week one, you haven't looked hard enough.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>Senior operators say "yes, that's exactly what's happening, and we've never named it before." The vocabulary itself becomes a tool.</p>
+                    </div>
+                    <p class="quote-small">"You cannot fix what you have not named. The diagnostic is not a deliverable, it is the first structural intervention."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>02 — Align</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Translate strategy from narrative into operating constraints.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Reduce the strategy to 3 to 5 strategic bets with explicit non-goals.</li>
+                            <li>Assign one accountable owner per bet, with budget and decision rights.</li>
+                            <li>Define leading indicators per bet, not vanity metrics.</li>
+                            <li>Publish guardrails: what you will and will not do this cycle.</li>
+                            <li>Kill or park anything that does not serve a named bet.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A bet portfolio that fits on a single page, signed by the executive team, and capable of resolving 80% of prioritization debates without a meeting.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Treating "alignment" as a communication exercise. Real alignment is measured in things you stop doing, not in slides everyone nods at.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>When a stakeholder request is declined and nobody escalates, because the guardrails make the answer obvious to everyone in the room.</p>
+                    </div>
+                    <p class="quote-small">"Alignment is what survives the absence of the executive who announced it. Anything else is a memo."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>03 — Design the System</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Engineer the operating model the way you would engineer a product.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Map decision rights: who decides, who is consulted, who is informed.</li>
+                            <li>Define the delivery cadence: planning, review, retrospective rhythm.</li>
+                            <li>Design intake funnels for requests, exceptions, and escalations.</li>
+                            <li>Configure tools to enforce the method, not to replace it.</li>
+                            <li>Write it down. If it isn't documented, it isn't a system.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>Operating Model v1: a documented system that any new hire can read on day one and operate by week two.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Designing the perfect system instead of a working one. v1 should be deliberately under-engineered, it will be revised by reality within weeks.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>Operators stop asking "who decides this?" and start asking "what does the data say?" Coordination overhead falls measurably.</p>
+                    </div>
+                    <p class="quote-small">"A documented operating model is the cheapest insurance a leadership team will ever buy, and the one most often skipped."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>04 — Operate</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Run the system. Instrument it. Resist the urge to redesign weekly.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Hold the cadence for at least one full delivery cycle without changes.</li>
+                            <li>Instrument the loops: cycle time, decision latency, rework, throughput.</li>
+                            <li>Surface friction in retrospectives, fix structure, not symptoms.</li>
+                            <li>Protect leadership time for strategic work, not arbitration.</li>
+                            <li>Let the system absorb the first crisis. That is the test.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A live delivery cadence producing predictable output, with a weekly operating review that takes 45 minutes, not three hours.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Patching the system on the first sign of friction. Friction is data, it tells you which structural assumption was wrong. Investigate before you fix.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>The team starts shipping ahead of the cadence and asks for harder bets, rather than asking for more capacity to handle the same backlog.</p>
+                    </div>
+                    <p class="quote-small">"The first cycle under a new system will feel slower. It isn't. You are now seeing the work that was previously hidden as coordination."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>05 — Scale Efficiently</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">Compound the system. Reduce the cost per unit of value shipped.</p>
+                    <div class="phase-detail-section">
+                        <h5>What this phase does</h5>
+                        <ul>
+                            <li>Codify what works into playbooks new teams can adopt without rewriting.</li>
+                            <li>Decentralize decisions that no longer need executive arbitration.</li>
+                            <li>Reinvest saved capacity into the next strategic bet, not into more rituals.</li>
+                            <li>Re-diagnose every two quarters, structure decays without maintenance.</li>
+                            <li>Train the next layer of leadership to run the model, not to depend on it.</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Outcome</h5>
+                        <p>A repeatable scale engine: the organization can absorb new teams, markets, or product lines without rebuilding the operating model from scratch.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Common pitfall</h5>
+                        <p>Confusing scale with replication. The model must be adapted to local context, only the principles travel unchanged, not the rituals.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>Signal of success</h5>
+                        <p>A new business unit reaches operating maturity in one quarter instead of four, using the same playbook with localized parameters.</p>
+                    </div>
+                    <p class="quote-small">"Scale is not a destination. It is the moment the operating model stops depending on the people who designed it."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-details-grid">
+            <div class="phase-detail-card">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-number">01</div>
+                    <div class="phase-detail-title">
+                        <h4>Diagnose</h4>
+                        <p>Before you fix anything, map where value actually leaks.</p>
+                    </div>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>What this phase does</h5>
+                    <ul>
+                        <li>Interview operators across product, eng, GTM and finance, separately.</li>
+                        <li>Trace 3 to 5 recent decisions end-to-end: who decided, on what evidence, in how long.</li>
+                        <li>Quantify cycle time, rework rate, and decision latency.</li>
+                        <li>Identify the top three structural failures by business impact, not noise.</li>
+                        <li>Document evidence verbatim, patterns matter more than opinions.</li>
+                    </ul>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Outcome</h5>
+                    <p>A 10 to 15 page structural diagnostic with named failures, evidence, and a ranked intervention plan. No opinions, only observed patterns.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Common pitfall</h5>
+                    <p>Treating the diagnostic as a survey instead of an investigation. If everyone agrees on the findings in week one, you haven't looked hard enough.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>Signal of success</h5>
+                    <p>Senior operators say "yes, that's exactly what's happening, and we've never named it before." The vocabulary itself becomes a tool.</p>
+                </div>
+                <div class="phase-quote">"You cannot fix what you have not named. The diagnostic is not a deliverable, it is the first structural intervention."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">02</div>
+                <div class="phase-detail-title">
+                    <h4>Align</h4>
+                    <p>Translate strategy from narrative into operating constraints.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Reduce the strategy to 3 to 5 strategic bets with explicit non-goals.</li>
+                    <li>Assign one accountable owner per bet, with budget and decision rights.</li>
+                    <li>Define leading indicators per bet, not vanity metrics.</li>
+                    <li>Publish guardrails: what you will and will not do this cycle.</li>
+                    <li>Kill or park anything that does not serve a named bet.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A bet portfolio that fits on a single page, signed by the executive team, and capable of resolving 80% of prioritization debates without a meeting.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Treating "alignment" as a communication exercise. Real alignment is measured in things you stop doing, not in slides everyone nods at.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>When a stakeholder request is declined and nobody escalates, because the guardrails make the answer obvious to everyone in the room.</p>
+            </div>
+            <div class="phase-quote">"Alignment is what survives the absence of the executive who announced it. Anything else is a memo."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">03</div>
+                <div class="phase-detail-title">
+                    <h4>Design the System</h4>
+                    <p>Engineer the operating model the way you would engineer a product.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Map decision rights: who decides, who is consulted, who is informed.</li>
+                    <li>Define the delivery cadence: planning, review, retrospective rhythm.</li>
+                    <li>Design intake funnels for requests, exceptions, and escalations.</li>
+                    <li>Configure tools to enforce the method, not to replace it.</li>
+                    <li>Write it down. If it isn't documented, it isn't a system.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>Operating Model v1: a documented system that any new hire can read on day one and operate by week two.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Designing the perfect system instead of a working one. v1 should be deliberately under-engineered, it will be revised by reality within weeks.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>Operators stop asking "who decides this?" and start asking "what does the data say?" Coordination overhead falls measurably.</p>
+            </div>
+            <div class="phase-quote">"A documented operating model is the cheapest insurance a leadership team will ever buy, and the one most often skipped."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">04</div>
+                <div class="phase-detail-title">
+                    <h4>Operate</h4>
+                    <p>Run the system. Instrument it. Resist the urge to redesign weekly.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Hold the cadence for at least one full delivery cycle without changes.</li>
+                    <li>Instrument the loops: cycle time, decision latency, rework, throughput.</li>
+                    <li>Surface friction in retrospectives, fix structure, not symptoms.</li>
+                    <li>Protect leadership time for strategic work, not arbitration.</li>
+                    <li>Let the system absorb the first crisis. That is the test.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A live delivery cadence producing predictable output, with a weekly operating review that takes 45 minutes, not three hours.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Patching the system on the first sign of friction. Friction is data, it tells you which structural assumption was wrong. Investigate before you fix.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>The team starts shipping ahead of the cadence and asks for harder bets, rather than asking for more capacity to handle the same backlog.</p>
+            </div>
+            <div class="phase-quote">"The first cycle under a new system will feel slower. It isn't. You are now seeing the work that was previously hidden as coordination."</div>
+            </div>
+
+            <div class="phase-detail-card">
+            <div class="phase-detail-header">
+                <div class="phase-detail-number">05</div>
+                <div class="phase-detail-title">
+                    <h4>Scale Efficiently</h4>
+                    <p>Compound the system. Reduce the cost per unit of value shipped.</p>
+                </div>
+            </div>
+            <div class="phase-detail-section">
+                <h5>What this phase does</h5>
+                <ul>
+                    <li>Codify what works into playbooks new teams can adopt without rewriting.</li>
+                    <li>Decentralize decisions that no longer need executive arbitration.</li>
+                    <li>Reinvest saved capacity into the next strategic bet, not into more rituals.</li>
+                    <li>Re-diagnose every two quarters, structure decays without maintenance.</li>
+                    <li>Train the next layer of leadership to run the model, not to depend on it.</li>
+                </ul>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Outcome</h5>
+                <p>A repeatable scale engine: the organization can absorb new teams, markets, or product lines without rebuilding the operating model from scratch.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Common pitfall</h5>
+                <p>Confusing scale with replication. The model must be adapted to local context, only the principles travel unchanged, not the rituals.</p>
+            </div>
+            <div class="phase-detail-section">
+                <h5>Signal of success</h5>
+                <p>A new business unit reaches operating maturity in one quarter instead of four, using the same playbook with localized parameters.</p>
+            </div>
+            <div class="phase-quote">"Scale is not a destination. It is the moment the operating model stops depending on the people who designed it."</div>
+            </div>
+
+            <div class="phase-detail-card phase-summary-card">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-number">06</div>
+                    <div class="phase-detail-title">
+                        <h4>How It All Works</h4>
+                        <p>The simple version for anyone in the company.</p>
+                    </div>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>The analogy</h5>
+                    <p>Think of it like building a house.</p>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>The five phases</h5>
+                    <ul class="summary-list">
+                        <li><strong>01 Diagnose</strong> — Find the cracks in the foundation</li>
+                        <li><strong>02 Align</strong> — Decide which rooms matter most</li>
+                        <li><strong>03 Design</strong> — Draw the blueprints for how work flows</li>
+                        <li><strong>04 Operate</strong> — Build the house and fix what breaks</li>
+                        <li><strong>05 Scale</strong> — Replicate the house without rebuilding</li>
+                    </ul>
+                </div>
+                <div class="phase-detail-section">
+                    <h5>The point</h5>
+                    <p>Most companies try to scale before diagnosing. They hire more people, buy more tools, run more meetings. The structure stays broken. Value First fixes the structure first, then scales what works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="engagement-section">
+        <h3>Typical Engagement</h3>
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <h4>Engagement Length</h4>
+                <ul>
+                    <li><strong>Diagnose:</strong> 3 to 4 weeks</li>
+                    <li><strong>Align:</strong> 2 to 3 weeks</li>
+                    <li><strong>Design:</strong> 4 to 6 weeks</li>
+                    <li><strong>Operate:</strong> one full delivery cycle (8 to 12 weeks)</li>
+                    <li><strong>Scale:</strong> continuous</li>
+                </ul>
+            </div>
+            <div class="engagement-card">
+                <h4>Leadership Time Required</h4>
+                <ul>
+                    <li><strong>Phases 1 to 3:</strong> 4 to 6 hours per week from the executive team</li>
+                    <li><strong>Phase 4 onwards:</strong> Drops to 1 to 2 hours per week once the system is operating</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="self-assessment-final">
+        <h2>Self-Assessment</h2>
+        <p>Score each statement 0 (never true) to 3 (consistently true). Total below 18 indicates structural drift; below 12, intervention is overdue.</p>
+
+        <div class="question-list">
+            <div class="question-item">
+                <div class="question-number">1</div>
+                <div class="question-text">Every active initiative maps to one named strategic bet with an owner.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">2</div>
+                <div class="question-text">Leadership can list this quarter's explicit non-goals from memory.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">3</div>
+                <div class="question-text">Prioritization debates are resolved by framework, not by seniority.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">4</div>
+                <div class="question-text">Product, engineering and GTM share one delivery cadence and definition of done.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">5</div>
+                <div class="question-text">Decision rights for recurring questions are documented and respected.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">6</div>
+                <div class="question-text">Cycle time, rework rate and decision latency are measured monthly.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">7</div>
+                <div class="question-text">Internal requests flow through a visible intake, not direct messages.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">8</div>
+                <div class="question-text">Tools enforce a documented method; no critical data lives in two places.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">9</div>
+                <div class="question-text">Senior talent has structural authority: budget, headcount, the right to say no.</div>
+            </div>
+            <div class="question-item">
+                <div class="question-number">10</div>
+                <div class="question-text">Leadership spends most of its week on bets, not on arbitration.</div>
+            </div>
+        </div>
+
+        <div class="score-card">
+            <h3>How to Read Your Score</h3>
+            <div class="score-ranges">
+                <div class="score-range">
+                    <div class="range-score">30 to 25</div>
+                    <div class="range-status">Structurally healthy. Maintain cadence and re-diagnose every two quarters to prevent drift.</div>
+                </div>
+                <div class="score-range">
+                    <div class="range-score">24 to 18</div>
+                    <div class="range-status">Drift forming. Two or more failures are taking root. Diagnose now.</div>
+                </div>
+                <div class="score-range">
+                    <div class="range-score">17 to 0</div>
+                    <div class="range-status">Structural failure. Intervention required. The cost of waiting another quarter exceeds the cost of acting.</div>
+                </div>
+            </div>
+            <div class="score-note">
+                <p>The score is a temperature reading, not a verdict. What matters is the pattern: which questions you scored 0 or 1 on. Three or more low scores in the same category, strategy, execution, operations, tooling, or talent, point to a single structural failure compounding underneath the surface.</p>
+                <p>Bring the completed assessment to your next leadership offsite. The goal is not to defend the score, it is to name the failure honestly enough that the team can act on it before the next quarter compounds the cost.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-section">
+        <div class="case-header">
+            <h2>Before vs. After: A B2B SaaS at $18M ARR</h2>
+            <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
+        </div>
+        <div class="case-card">
+            <div class="case-title">
+                <h3>B2B SaaS at $18M ARR</h3>
+                <p>Same people. Same stack. Same market. The only variable changed was the operating structure.</p>
+            </div>
+            <div class="case-metrics">
+                <div class="metric">
+                    <div class="metric-label">Strategic Bets</div>
+                    <div class="metric-values">
+                        <span class="metric-old">27</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Cycle Time</div>
+                    <div class="metric-values">
+                        <span class="metric-old">11w</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4w</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Rework Rate</div>
+                    <div class="metric-values">
+                        <span class="metric-old">31%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">9%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Net Revenue Ret.</div>
+                    <div class="metric-values">
+                        <span class="metric-old">98%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">118%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Leadership in Arbitration</div>
+                    <div class="metric-values">
+                        <span class="metric-old">60%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">15%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Attrition</div>
+                    <div class="metric-values">
+                        <span class="metric-old">22%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">6%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-footer">
+                <blockquote>"We didn't hire our way out of it. We designed our way out of it." VP of Product</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>If This Resonated, We Probably Have a Conversation Worth Having.</h2>
+        <div class="cta-grid">
+            <div class="cta-text-card">
+                <p>If you read this ebook and recognized your own organization in more than two of the structural failures, the next quarter will not fix itself. Structures don't self-correct. They compound.</p>
+                <p>Value First works with leadership teams who are ready to stop blaming people and tools, and start redesigning the operating system around their product. We do not deliver decks. We deliver structural change you can measure in cycle time, decision latency, and unit economics.</p>
+            </div>
+            <blockquote class="cta-quote">"Scaling a digital product is easy. Scaling it efficiently is where most companies fail. It's not a people or tech problem. It's a structure problem."</blockquote>
+        </div>
+        <div class="cta-next-step-card">
+            <div class="cta-next-step-header">
+                <h3>Next Step</h3>
+            </div>
+            <div class="cta-next-step-body">
+                <p class="cta-next-step-title">45-minute structured diagnostic call</p>
+                <p class="cta-next-step-desc">No deck. No pitch. We walk through your operating structure and name the failures we see, or tell you there aren't any.</p>
+                <div class="cta-contact-details">
+                    <p class="cta-contact">Engagements typically begin with a single diagnostic conversation. No preparation required.</p>
+                    <p class="cta-contact">Bring the questions you cannot resolve internally, and we will tell you whether they are execution problems or structural ones.</p>
+                </div>
+                <p class="cta-website">valuefirstconsulting.com</p>
+                <a href="https://valuefirstconsulting.com" class="cta-button" target="_blank">Book a Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Value First 2026</p>
+    </footer>
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            document.querySelectorAll('.accordion-mobile .accordion-header').forEach(h => h.classList.remove('active'));
+            document.querySelectorAll('.accordion-mobile .accordion-content').forEach(c => c.classList.remove('active'));
+
+            if (!isActive) {
+                header.classList.add('active');
+                if (content && content.classList.contains('accordion-content')) {
+                    content.classList.add('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
