@@ -698,8 +698,34 @@
                 gap: 16px;
             }
             .phase-detail-card:nth-child(4),
-            .phase-detail-card:nth-child(5) {
+            .phase-detail-card:nth-child(5),
+            .phase-detail-card:nth-child(6) {
                 grid-column: span 1;
+            }
+            .phase-summary-card {
+                background: linear-gradient(135deg, rgba(123, 63, 204, 0.15) 0%, rgba(45, 27, 78, 0.3) 100%);
+                border: 1px solid rgba(123, 63, 204, 0.4);
+            }
+            .phase-summary-card .phase-detail-number {
+                background: var(--purple-vivid);
+                color: var(--bg-cream);
+            }
+            .phase-summary-card h4 {
+                color: var(--purple-vivid);
+            }
+            .summary-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .summary-list li {
+                font-size: 14px;
+                color: var(--purple-muted);
+                padding: 6px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .summary-list li:last-child {
+                border-bottom: none;
             }
         }
             .phase-details > h3 {
@@ -2273,6 +2299,32 @@
                         <p>A new business unit reaches operating maturity in one quarter instead of four, using the same playbook with localized parameters.</p>
                     </div>
                     <p class="quote-small">"Scale is not a destination. It is the moment the operating model stops depending on the people who designed it."</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>06 — How It All Works</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="subtitle">The short version for anyone in the company.</p>
+                    <div class="phase-detail-section">
+                        <h5>The analogy</h5>
+                        <p>Think of it like building a house.</p>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>The five phases</h5>
+                        <ul>
+                            <li><strong>01 Diagnose</strong> — Find the cracks in the foundation</li>
+                            <li><strong>02 Align</strong> — Decide which rooms matter most</li>
+                            <li><strong>03 Design</strong> — Draw the blueprints for how work flows</li>
+                            <li><strong>04 Operate</strong> — Build the house and fix what breaks</li>
+                            <li><strong>05 Scale</strong> — Replicate the house without rebuilding</li>
+                        </ul>
+                    </div>
+                    <div class="phase-detail-section">
+                        <h5>The point</h5>
+                        <p>Most companies try to scale before diagnosing. They hire more people, buy more tools, run more meetings. The structure stays broken. Value First fixes the structure first, then scales what works.</p>
+                    </div>
                 </div>
             </div>
         </div>
