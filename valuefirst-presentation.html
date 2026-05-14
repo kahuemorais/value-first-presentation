@@ -730,9 +730,9 @@
             .phase-summary-quote {
                 font-style: italic;
                 font-size: 14px;
-                color: var(--bg-cream);
+                color: var(--text-dark);
                 padding: 16px;
-                background: rgba(123, 63, 204, 0.15);
+                background: rgba(123, 63, 204, 0.1);
                 border-radius: 12px;
                 border-left: 3px solid var(--purple-vivid);
                 margin-top: 8px;
@@ -1621,6 +1621,52 @@
             .phase-details {
                 display: block;
             }
+            .phase-details-grid {
+                display: none;
+            }
+            .accordion-mobile {
+                display: block;
+            }
+            .phase-details .accordion-mobile {
+                display: block;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+            .intro-audience {
+                padding: 60px clamp(40px, 8vw, 80px);
+            }
+            .intro-howto {
+                padding: 60px clamp(40px, 8vw, 80px);
+            }
+            .case-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .case-metrics .metric {
+                border-bottom: 1px solid var(--purple-muted);
+            }
+            .framework-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+            .phase-details {
+                display: block;
+            }
+            .phase-details-grid {
+                display: none;
+            }
+            .phase-details .accordion-mobile {
+                display: block;
+            }
+        }
             .phase-details-grid {
                 display: none;
             }
@@ -2545,23 +2591,6 @@
                 <div class="phase-detail-section">
                     <h5>Why it matters</h5>
                     <p>Most companies skip phases. They hire more people, buy more tools, run more meetings. The structure stays broken. Value First fixes the structure first, then scales what works.</p>
-                </div>
-                <div class="phase-summary-quote">"Most companies skip phases and wonder why the structure stays broken."</div>
-            </div>
-                </div>
-                <div class="phase-detail-section">
-                    <h5>The analogy</h5>
-                    <p>Think of it like building a house. You wouldn't build a second floor on a cracked foundation.</p>
-                </div>
-                <div class="phase-detail-section">
-                    <h5>The five phases</h5>
-                    <ul class="summary-list">
-                        <li><strong>01 Diagnose</strong> — Find the cracks</li>
-                        <li><strong>02 Align</strong> — Decide what matters</li>
-                        <li><strong>03 Design</strong> — Draw the blueprints</li>
-                        <li><strong>04 Operate</strong> — Build and fix</li>
-                        <li><strong>05 Scale</strong> — Replicate</li>
-                    </ul>
                 </div>
                 <div class="phase-summary-quote">"Most companies skip phases and wonder why the structure stays broken."</div>
             </div>
