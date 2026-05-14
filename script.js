@@ -12,3 +12,9 @@ function toggleAccordion(header) {
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.accordion-mobile .accordion-header').forEach(header => {
+        header.addEventListener('click', () => toggleAccordion(header));
+    });
+});
