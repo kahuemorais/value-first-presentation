@@ -475,6 +475,21 @@
             font-style: italic;
         }
 
+        .failure-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--purple-soft);
+            opacity: 0.6;
+        }
+
+        .failure-card {
+            position: relative;
+        }
+
         .cost-section {
             background: var(--surface-light);
             padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
@@ -538,11 +553,20 @@
             min-width: 180px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
             padding: 24px 20px;
             background: var(--bg-white);
             border: 1px solid var(--purple-muted);
             border-radius: 16px;
+            position: relative;
+        }
+
+        .cost-icon {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--purple-soft);
         }
 
         .cost-percent {
@@ -919,6 +943,114 @@
             border-bottom: none;
         }
 
+        .engagement-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--purple-vivid) 0%, var(--purple-rich) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--bg-cream);
+        }
+
+        .engagement-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .engagement-item {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-cream);
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .engagement-item:hover {
+            transform: translateX(4px);
+        }
+
+        .phase-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--bg-cream);
+        }
+
+        .phase-badge.diagnose { background: var(--purple-vivid); }
+        .phase-badge.align { background: var(--purple-rich); }
+        .phase-badge.design { background: var(--purple-deep); }
+        .phase-badge.operate { background: var(--text-medium); }
+        .phase-badge.scale { background: var(--purple-soft); }
+
+        .phase-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .phase-duration {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .leadership-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .leadership-phase {
+            padding: 20px;
+            background: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .leadership-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .leadership-value {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--purple-deep);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .leadership-value.highlight {
+            color: var(--purple-vivid);
+        }
+
+        .leadership-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .leadership-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple-muted), transparent);
+        }
+
         .self-assessment-questions {
             background: var(--bg-white);
             padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
@@ -1026,6 +1158,17 @@
             border-radius: 8px;
         }
 
+        .phase-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--purple-soft);
+            opacity: 0.7;
+        }
+
         .case-section {
             background: var(--bg-cream);
             padding: clamp(80px, 12vw, 140px) clamp(40px, 8vw, 120px);
@@ -1033,6 +1176,20 @@
 
         .case-header {
             margin-bottom: 48px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .case-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--purple-vivid);
+            margin-top: 8px;
         }
 
         .case-header h2 {
@@ -1925,17 +2082,31 @@
 
         <div class="failures-grid">
             <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
                 <div class="failure-number">01</div>
                 <h3>No Strategic Direction</h3>
                 <p class="subtitle">Strategy exists as a slide, not as an operating constraint.</p>
                 <ul>
-                    <li>Teams ship features without business outcome</li>
+                    <li>Teams ship a high volume of features but cannot articulate which business outcome each one serves</li>
                     <li>Prioritization won by loudest voice</li>
                     <li>Roadmaps long; convictions short</li>
                 </ul>
                 <p class="quote-small">"If your team cannot recite this quarter's top three bets unprompted, you don't have a strategy, you have a roadmap."</p>
             </div>
             <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
                 <div class="failure-number">02</div>
                 <h3>Disconnected Execution</h3>
                 <p class="subtitle">Product, engineering, design, marketing each optimize their own loop.</p>
@@ -1945,9 +2116,16 @@
                     <li>Engineering ships features marketing can't position and sales can't price</li>
                     <li>Customers receive value in fragments, not as a coherent product story</li>
                 </ul>
-                <p class="quote-small">"If your launches surprise your own GTM team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
+                <p class="quote-small">"If your launches surprise your own go-to-market team, you don't have a delivery problem; you have a coordination contract no one signed."</p>
             </div>
             <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
                 <div class="failure-number">03</div>
                 <h3>Reactive Operations</h3>
                 <p class="subtitle">The week is run by whatever broke, escalated, or showed up in the inbox.</p>
@@ -1959,6 +2137,11 @@
                 <p class="quote-small">"If your calendar is your strategy, the most important work in your company is the work you never get to."</p>
             </div>
             <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
                 <div class="failure-number">04</div>
                 <h3>Tools Without Method</h3>
                 <p class="subtitle">A stack of best-in-class tools that nobody uses the same way twice.</p>
@@ -1970,6 +2153,14 @@
                 <p class="quote-small">"Tools don't create method. Method creates the demand for tools, and any tool adopted in the wrong order becomes a liability."</p>
             </div>
             <div class="failure-card">
+                <div class="failure-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
                 <div class="failure-number">05</div>
                 <h3>Talent Without Structure</h3>
                 <p class="subtitle">Senior people, junior outcomes.</p>
@@ -1992,7 +2183,7 @@
                     <div class="failure-section">
                         <h5>Symptom</h5>
                         <ul>
-                            <li>Teams ship features without business outcome</li>
+                            <li>Teams ship a high volume of features but cannot articulate which business outcome each one serves</li>
                             <li>Prioritization won by loudest voice</li>
                             <li>Roadmaps long; convictions short</li>
                         </ul>
@@ -2621,6 +2812,72 @@
         </div>
     </section>
 
+    <section class="case-section">
+        <div class="case-header">
+            <h2>Before vs. After: A B2B SaaS at $18M ARR</h2>
+            <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
+        </div>
+        <div class="case-card">
+            <div class="case-title">
+                <h3>B2B SaaS at $18M ARR</h3>
+                <p>Same people. Same stack. Same market. The only variable changed was the operating structure.</p>
+            </div>
+            <div class="case-metrics">
+                <div class="metric">
+                    <div class="metric-label">Strategic Bets</div>
+                    <div class="metric-values">
+                        <span class="metric-old">27</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Cycle Time</div>
+                    <div class="metric-values">
+                        <span class="metric-old">11w</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">4w</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Rework Rate</div>
+                    <div class="metric-values">
+                        <span class="metric-old">31%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">9%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Net Revenue Ret.</div>
+                    <div class="metric-values">
+                        <span class="metric-old">98%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">118%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Leadership in Arbitration</div>
+                    <div class="metric-values">
+                        <span class="metric-old">60%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">15%</span>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Attrition</div>
+                    <div class="metric-values">
+                        <span class="metric-old">22%</span>
+                        <span class="metric-arrow">to</span>
+                        <span class="metric-new">6%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-footer">
+                <blockquote>"We didn't hire our way out of it. We designed our way out of it."<cite>— VP of Product</cite></blockquote>
+            </div>
+        </div>
+    </section>
+
     <section class="self-assessment-final">
         <h2>Self-Assessment</h2>
         <p>Score each statement 0 (never true) to 3 (consistently true). Total below 18 indicates structural drift; below 12, intervention is overdue.</p>
@@ -2687,72 +2944,6 @@
             <div class="score-note">
                 <p>The score is a temperature reading, not a verdict. What matters is the pattern: which questions you scored 0 or 1 on. Three or more low scores in the same category, strategy, execution, operations, tooling, or talent, point to a single structural failure compounding underneath the surface.</p>
                 <p>Bring the completed assessment to your next leadership offsite. The goal is not to defend the score, it is to name the failure honestly enough that the team can act on it before the next quarter compounds the cost.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="case-section">
-        <div class="case-header">
-            <h2>Before vs. After: A B2B SaaS at $18M ARR</h2>
-            <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
-        </div>
-        <div class="case-card">
-            <div class="case-title">
-                <h3>B2B SaaS at $18M ARR</h3>
-                <p>Same people. Same stack. Same market. The only variable changed was the operating structure.</p>
-            </div>
-            <div class="case-metrics">
-                <div class="metric">
-                    <div class="metric-label">Strategic Bets</div>
-                    <div class="metric-values">
-                        <span class="metric-old">27</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">4</span>
-                    </div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Cycle Time</div>
-                    <div class="metric-values">
-                        <span class="metric-old">11w</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">4w</span>
-                    </div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Rework Rate</div>
-                    <div class="metric-values">
-                        <span class="metric-old">31%</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">9%</span>
-                    </div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Net Revenue Ret.</div>
-                    <div class="metric-values">
-                        <span class="metric-old">98%</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">118%</span>
-                    </div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Leadership in Arbitration</div>
-                    <div class="metric-values">
-                        <span class="metric-old">60%</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">15%</span>
-                    </div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Attrition</div>
-                    <div class="metric-values">
-                        <span class="metric-old">22%</span>
-                        <span class="metric-arrow">to</span>
-                        <span class="metric-new">6%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="case-footer">
-                <blockquote>"We didn't hire our way out of it. We designed our way out of it."<cite>— VP of Product</cite></blockquote>
             </div>
         </div>
     </section>
