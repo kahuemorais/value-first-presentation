@@ -18,6 +18,10 @@ The Value First Delivery Framework is a five-phase operating model:
 4. **Operate** — Run the system and instrument the loops
 5. **Scale** — Compound learning and reduce unit cost
 
+## Live Demo
+
+https://kahuemorais.github.io/value-first-presentation/
+
 ## License
 
 © Value First 2026
