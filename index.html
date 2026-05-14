@@ -290,6 +290,53 @@
             opacity: 0.7;
         }
 
+        .toc-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+            justify-content: center;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            color: var(--bg-cream);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            min-width: 260px;
+        }
+
+        .toc-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .toc-number {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--purple-vivid);
+            background: var(--bg-cream);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .toc-label {
+            font-size: 14px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .toc-arrow {
+            opacity: 0.5;
+        }
+
         .thesis-section {
             background: var(--purple-deep);
             color: var(--bg-cream);
@@ -2066,6 +2113,43 @@
         </div>
         <h3>How to read this ebook</h3>
         <p>Read it in one sitting (about 25 minutes). Start with the five structural failures to diagnose your situation. Then explore the Value First operating model. Apply what you learn with the self-assessment, and take action.</p>
+        <div class="toc-grid">
+            <a href="#failures" class="toc-item">
+                <span class="toc-number">01</span>
+                <span class="toc-label">The Five Structural Failures</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#cost" class="toc-item">
+                <span class="toc-number">02</span>
+                <span class="toc-label">What Structural Drift Costs</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#framework" class="toc-item">
+                <span class="toc-number">03</span>
+                <span class="toc-label">The Value First Delivery Framework</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#assessment" class="toc-item">
+                <span class="toc-number">04</span>
+                <span class="toc-label">Self-Assessment</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+            <a href="#case-study" class="toc-item">
+                <span class="toc-number">05</span>
+                <span class="toc-label">Case Study</span>
+                <span class="toc-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </a>
+        </div>
     </section>
 
     <section class="thesis-section">
@@ -2087,7 +2171,7 @@
         </div>
     </section>
 
-    <section class="failures-section">
+    <section class="failures-section" id="failures">
         <div class="failures-header">
             <h2>The Five Structural Failures</h2>
             <p>Each failure compounds silently, disguised as an execution problem.</p>
@@ -2336,7 +2420,7 @@
         </div>
     </section>
 
-    <section class="cost-section">
+    <section class="cost-section" id="cost">
         <div class="cost-header">
             <h2>What Structural Drift Actually Costs You</h2>
             <p>Structural failures are rarely catastrophic. They are expensive precisely because they look survivable.</p>
@@ -2419,7 +2503,7 @@
         <div class="cost-quote">"The most expensive line item on your P&L is the one no accountant will ever book."</div>
     </section>
 
-    <section class="framework-section">
+    <section class="framework-section" id="framework">
         <div class="framework-header">
             <h2>The Value First Delivery Framework</h2>
             <p>The Value First Delivery Framework is a five-phase operating model designed to move a product organization from reactive execution to structural efficiency. Each phase is a structural intervention, not a workshop.</p>
@@ -2933,7 +3017,7 @@
         </div>
     </section>
 
-    <section class="case-section">
+    <section class="case-section" id="case-study">
         <div class="case-header">
             <div class="case-icon">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -3005,7 +3089,7 @@
         </div>
     </section>
 
-    <section class="self-assessment-final">
+    <section class="self-assessment-final" id="assessment">
         <h2>Self-Assessment</h2>
         <p>Score each statement 0 (never true) to 3 (consistently true). Total below 18 indicates structural drift; below 12, intervention is overdue.</p>
 
