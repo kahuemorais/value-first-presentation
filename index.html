@@ -1246,7 +1246,11 @@
             margin-top: 8px;
         }
 
-        .case-header h2 {
+        .case-header-text {
+            flex: 1;
+        }
+
+        .case-header-text h2 {
             font-family: 'Bricolage Grotesque', sans-serif;
             font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
@@ -1254,7 +1258,7 @@
             margin-bottom: 12px;
         }
 
-        .case-header > p {
+        .case-subtitle {
             font-size: 17px;
             color: var(--text-light);
             max-width: 600px;
@@ -1811,6 +1815,12 @@
             }
             .case-metrics .metric {
                 border-bottom: 1px solid var(--purple-muted);
+            }
+            .case-header {
+                flex-direction: column;
+            }
+            .case-header .case-icon {
+                margin-bottom: 16px;
             }
             .framework-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -3025,8 +3035,10 @@
                     <polyline points="17 6 23 6 23 12"/>
                 </svg>
             </div>
-            <h2>Before vs. After: A B2B SaaS at $18M ARR</h2>
-            <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
+            <div class="case-header-text">
+                <h2>Before vs. After: A B2B SaaS at $18M ARR</h2>
+                <p class="case-subtitle">A vertical SaaS company, four product squads, growing 14% YoY but burning more cash each quarter. Leadership believed it was a hiring problem.</p>
+            </div>
         </div>
         <div class="case-card">
             <div class="case-title">
