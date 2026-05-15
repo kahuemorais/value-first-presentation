@@ -1,6 +1,12 @@
 *
 !.gitignore
+!.gitignore
 !README.md
+!rules.md
+!CONTRIBUTING.md
+!CHANGELOG.md
+!ARCHITECTURE.md
+!TODO.md
 !index.html
 !script.js
 !styles.css
