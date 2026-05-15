@@ -1620,6 +1620,47 @@
             background: radial-gradient(ellipse at 70% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%);
         }
 
+        .cta-quote-section {
+            background: var(--purple-deep);
+            padding: clamp(60px, 10vw, 100px) clamp(40px, 8vw, 120px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(123, 63, 204, 0.15) 0%, transparent 60%);
+        }
+
+        .cta-quote-wrapper {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-quote-section .cta-quote {
+            background: rgba(255,255,255,0.08);
+            padding: 40px 48px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-style: italic;
+            color: var(--bg-cream);
+            line-height: 1.7;
+            margin: 0;
+        }
+
 .cta-section h2 {
             position: relative;
             z-index: 1;
